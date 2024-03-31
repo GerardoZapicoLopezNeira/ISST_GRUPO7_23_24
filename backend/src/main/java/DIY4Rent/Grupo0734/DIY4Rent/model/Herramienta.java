@@ -1,6 +1,7 @@
 package DIY4Rent.Grupo0734.DIY4Rent.model;
 import java.sql.Blob;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +17,7 @@ import lombok.ToString;
 
 
 @Entity
-@Table(name="Herramientas")
+@Table(name="herramientas")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -33,7 +34,9 @@ public class Herramienta {
     private Boolean disponibilidad;
     private String tipo;
     private String descripcion;
+    @Column(name = "precio_diario") 
     private Double precioDiario;
     private Blob foto;
+    @Column(name = "estado_fisico")
     private String estadoFisico;
 }

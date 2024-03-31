@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import HerramientaService from '../service/HerramientaService';
 
 function SearchTools() {
   const [searchTerm, setSearchTerm] = useState('');
   const [tools, setTools] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const fetchTools = async () => {
+  const searchTools = async () => {
     setLoading(true);
     try {
       const response = await axios.get('http://localhost:9090/api/v1/herramientas');
@@ -19,7 +20,13 @@ function SearchTools() {
   };
 
   useEffect(() => {
-    fetchTools();
+    HerramientaService.getAllHerramientas().then((response) => {
+      setTools(response.data);
+      console.log(response.data);
+    }).catch((error) => {
+      console.error('Error fetching tools:', error);
+    });
+
   }, []);
 
   return (
@@ -32,7 +39,7 @@ function SearchTools() {
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Enter search term..."
         />
-        <button onClick={fetchTools} disabled={!searchTerm || loading}>
+        <button onClick={searchTools} disabled={!searchTerm || loading}>
           {loading ? 'Searching...' : 'Search'}
         </button>
       </div>

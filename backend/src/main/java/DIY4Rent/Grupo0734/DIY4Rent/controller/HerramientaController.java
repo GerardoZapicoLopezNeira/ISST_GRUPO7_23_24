@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
 @RequestMapping("/api/v1/herramientas")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin("*")
 public class HerramientaController {
 
     @Autowired
