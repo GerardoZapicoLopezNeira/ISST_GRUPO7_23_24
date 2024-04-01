@@ -1,12 +1,52 @@
 // App.js
 import React from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import SearchTools from './pages/SearchTools';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import './App.css';
+import { getAuthToken, request, setAuthHeader } from './helpers/axios_helper';
 
 function App() {
+
+  const logout = () => {
+    setAuthHeader(null);
+    window.location.href = "/";
+  };
+
+  const onLogin = async (e, formData) => {
+    e.preventDefault();
+    request("POST", "/login", formData).then(
+        (response) => {
+          setAuthHeader(response.data.token);
+          window.location.href = "/"
+          console.log(response.data);
+        }).catch(
+          (error) => {
+            setAuthHeader(null);
+          }
+        );
+  };
+
+  const onRegister = async (event, formData) => {
+    event.preventDefault();
+    console.log(formData)
+    request('POST', '/register', formData).then(
+      (response) => {
+        setAuthHeader(response.data.token);
+        window.location.href = "/"
+        console.log(response.data);
+      }).catch(
+        (error) => {
+          setAuthHeader(null);
+        }
+      );
+  };
+
   return (
     <Router>
       <div className="app">
@@ -18,14 +58,31 @@ function App() {
                 <Link to="/">Home</Link>
               </li>
               <li className="menu-item">
+                <Link to="/search">Search Tools</Link>
+              </li>
+              <li className="menu-item">
                 <Link to="/about">About</Link>
               </li>
               <li className="menu-item">
                 <Link to="/contact">Contact</Link>
               </li>
-              <li className="menu-item">
-                <Link to="/search">Search Tools</Link>
-              </li>
+              {getAuthToken() === null &&
+                <li className="menu-item">
+                  <Link to="/login">Iniciar sesión</Link>
+                </li>
+              }
+              {getAuthToken() === null &&
+                <li className="menu-item">
+                  <Link to="/register">Registrarse</Link>
+                </li>
+              }
+              {getAuthToken() !== null &&
+                <li className="menu-item">
+                  <button className="logout" onClick={logout}>Cerrar sesión</button>
+                </li>
+              }
+
+
             </ul>
           </div>
         </nav>
@@ -35,6 +92,8 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/search" element={<SearchTools />} />
+            <Route path="/login" element={<Login onLogin={onLogin} />} />
+            <Route path="/register" element={<Register onRegister={onRegister} />} />
           </Routes>
         </div>
       </div>

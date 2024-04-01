@@ -30,7 +30,7 @@ function SearchTools() {
   }, []);
 
   return (
-    <div>
+    <div className='search-tools'>
       <h2>Search Tools</h2>
       <div>
         <input

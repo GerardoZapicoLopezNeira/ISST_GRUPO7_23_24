@@ -11,6 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,12 +19,10 @@ import lombok.ToString;
 
 
 @Entity
+@Data
 @Table(name="reservas")
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
-@ToString
 public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +40,9 @@ public class Reserva {
     private Date fechaRecogida;
     @Column(name = "fecha_devolucion")
     private Date fechaDevolucion;
+    // @Column(name = "importe", nullable = false)
     private Double importe;
+    // @Column(name = "estado", nullable = false)
     private String estado;
     
 

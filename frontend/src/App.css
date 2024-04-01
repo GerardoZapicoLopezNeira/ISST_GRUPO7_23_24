@@ -1,38 +1,227 @@
-.App {
+/* General styles */
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+/* Navigation bar styles */
+.navbar {
+  background-color: #282c34;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem; /* Padding for navbar content */
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: 1rem; /* Margin for logo spacing */
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-item {
+  margin-right: 1rem;
+}
+
+.menu-item a {
+  text-decoration: none;
+  color: white;
+  padding: 0.5rem 1rem; /* Padding for menu items */
+}
+
+.menu-item a:hover {
+  color: #61dafb;
+}
+
+/* Content area styles */
+.content {
+  flex: 1;
+  padding: 2rem; /* Padding for content area */
+}
+
+.home {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.search-tools {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.search-tools input {
+  padding: 0.5rem; /* Padding for input field */
+  margin-bottom: 1rem; /* Margin for spacing */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.search-tools button {
+  padding: 0.5rem 1rem; /* Padding for button */
+  cursor: pointer;
+  margin-right: 1rem; /* Margin for spacing */
+}
+
+.search-tools ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-tools li {
+  margin-bottom: 1rem; /* Margin for spacing between list items */
+  padding: 0.5rem 1rem; /* Padding for list item content */
+}
+
+.contact {
+  text-align: center;
+  padding: 2rem; /* Padding for contact content */
+}
+
+.about {
+  text-align: center;
+  padding: 2rem; /* Padding for about content */
+}
+
+/* Basic styles */
+.login-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
+  background-color: #f5f5f5;
 }
 
-.App-link {
-  color: #61dafb;
+.login-form h2 {
+  margin-bottom: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Form styles */
+.login-form form {
+  width: 100%;
+  max-width: 350px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.login-form .form-group {
+  margin-bottom: 15px;
+}
+
+.login-form .form-control {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.login-form .form-control:focus {
+  border-color: #80bdff;
+  outline: none;
+}
+
+.login-form button[type="submit"] {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.login-form button[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.register-form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-control {
+  display: block;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  outline: none;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+}
+
+.logout {
+  background-color: #282c34; /* Standout color for visibility */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase; /* Optional for a more distinct look */
+  transition: background-color 0.2s ease-in-out;
+  /* Added styles for alignment */
+  display: inline-block; /* Make it behave like other menu items */
+  margin-right: 1rem; /* Add margin for spacing */
+}
+
+
+.logout:hover {
+  background-color: #da1e0b; /* Slightly darker hover effect */
 }

@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,12 +18,10 @@ import lombok.ToString;
 
 
 @Entity
+@Data
 @Table(name="herramientas")
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
-@ToString
 public class Herramienta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,11 +30,15 @@ public class Herramienta {
     @ManyToOne
     @JoinColumn(name = "id_propietario")
     private Usuario propietario;
+    // @Column(name = "disponibilidad", nullable = false)
     private Boolean disponibilidad;
+    // @Column(name = "tipo", nullable = false)
     private String tipo;
+    // @Column(name = "descripcion", nullable = false)
     private String descripcion;
     @Column(name = "precio_diario") 
     private Double precioDiario;
+    // @Column(name = "foto")
     private Blob foto;
     @Column(name = "estado_fisico")
     private String estadoFisico;
