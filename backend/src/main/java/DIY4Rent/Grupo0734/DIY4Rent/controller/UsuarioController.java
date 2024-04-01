@@ -43,6 +43,12 @@ public class UsuarioController {
         return ResponseEntity.ok(userDto);
     }
 
+    @GetMapping("/api/v1/users/{username}")
+    public ResponseEntity<UserDto> getUser(@PathVariable String username) {
+        UserDto userDto = usuarioService.findByUsername(username);
+        return ResponseEntity.ok(userDto);
+    } 
+
     @PostMapping("/api/v1/register")
     public ResponseEntity<UserDto> register(@RequestBody @Valid SignUpDto user) {
         UserDto createdUser = usuarioService.register(user);
