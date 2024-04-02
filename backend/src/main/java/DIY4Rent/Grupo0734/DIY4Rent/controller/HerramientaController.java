@@ -27,9 +27,9 @@ public class HerramientaController {
     @Autowired
     private HerramientaService herramientaService;
 
-    @GetMapping
-    public ResponseEntity<List<Herramienta>> getAllHerramientas() {
-        List<Herramienta> herramientaList = herramientaService.getAllHerramientas();
+    @GetMapping("/getMyHerramientas")
+    public ResponseEntity<List<Herramienta>> getAllHerramientas(@PathVariable Long id) {
+        List<Herramienta> herramientaList = herramientaService.getAllHerramientasByUser(id);
         if (herramientaList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

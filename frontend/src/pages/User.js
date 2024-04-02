@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState} from 'react'
 import { getAuthToken, request, setAuthHeader } from '../helpers/axios_helper';
 
-function User(props) {
+function User() {
+
 
 
   return (
@@ -9,11 +10,11 @@ function User(props) {
       <h1>Mi cuenta</h1>
       <p>En esta sección podrás ver tu información personal y modificarla si es necesario.</p>
       <h2>Información personal</h2>
-      <p>Nombre: {props.userInfo.nombre}</p>
-      <p>DNI: {props.userInfo.dni}</p>
-      <p>Dirección: {props.userInfo.direccion}</p>
-      <p>Email: {props.userInfo.email}</p>
-      <p>Teléfono: {props.userInfo.telefono}</p>
+      <p>Nombre: {localStorage.getItem("nombre")}</p>
+      <p>DNI: {localStorage.getItem("dni")}</p>
+      <p>Dirección: {localStorage.getItem("direccion")}</p>
+      <p>Email: {localStorage.getItem("email")}</p>
+      <p>Teléfono: {localStorage.getItem("telefono")}</p>
       
       
     </div>

@@ -15,8 +15,8 @@ public class HerramientaService {
     @Autowired
     private HerramientaRepository herramientaRepository;
 
-    public List<Herramienta> getAllHerramientas() {
-        return herramientaRepository.findAll();
+    public List<Herramienta> getAllHerramientasByUser(Long id) {
+        return herramientaRepository.findByPropietario(id);
     }
 
     public Herramienta getHerramientaById(Long id) {
