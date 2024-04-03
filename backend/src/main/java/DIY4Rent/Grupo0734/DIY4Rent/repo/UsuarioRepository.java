@@ -10,5 +10,5 @@ import DIY4Rent.Grupo0734.DIY4Rent.model.Usuario;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
-    Optional<Usuario> findByUsername(String login);
+    Optional<Usuario> findByUsername(String username);
 }  

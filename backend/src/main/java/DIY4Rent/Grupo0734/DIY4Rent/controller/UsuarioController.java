@@ -7,6 +7,7 @@ import DIY4Rent.Grupo0734.DIY4Rent.config.UserAuthenticationProvider;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.CredentialsDto;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.SignUpDto;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.UserDto;
+import DIY4Rent.Grupo0734.DIY4Rent.model.Herramienta;
 import DIY4Rent.Grupo0734.DIY4Rent.model.Usuario;
 import DIY4Rent.Grupo0734.DIY4Rent.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -53,8 +54,9 @@ public class UsuarioController {
     public ResponseEntity<UserDto> register(@RequestBody @Valid SignUpDto user) {
         UserDto createdUser = usuarioService.register(user);
         createdUser.setToken(userAuthenticationProvider.createToken(user.getUsername()));
-        return ResponseEntity.created(URI.create("/users/" + createdUser.getId())).body(createdUser); // Que es esto de /user   ???
+        return ResponseEntity.created(URI.create("/users/" + createdUser.getId())).body(createdUser); 
     }
+
 
     
    

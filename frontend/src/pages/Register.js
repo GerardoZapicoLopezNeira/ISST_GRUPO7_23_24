@@ -23,10 +23,10 @@ function Register(props) {
 
   return (
     <div className="register-form">
-      <h2>Register</h2>
+      <h2>Registro de usuario</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Nombre de usuario</label>
           <input
             type="text"
             className="form-control"
@@ -38,7 +38,7 @@ function Register(props) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Contraseña</label>
           <input
             type="password"
             className="form-control"
@@ -62,7 +62,7 @@ function Register(props) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="nombre">Full Name</label>
+          <label htmlFor="nombre">Nombre y apellidos</label>
           <input
             type="text"
             className="form-control"
@@ -74,7 +74,7 @@ function Register(props) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="direccion">Address</label>
+          <label htmlFor="direccion">Dirección</label>
           <input
             type="text"
             className="form-control"
@@ -85,9 +85,9 @@ function Register(props) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Correo Electrónico</label>
           <input
-            type="text"
+            type="email"
             className="form-control"
             id="email"
             name="email"
@@ -96,9 +96,9 @@ function Register(props) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="telefono">Phone Number</label>
+          <label htmlFor="telefono">Número de teléfono</label>
           <input
-            type="text" 
+            type="tel" 
             className="form-control"
             id="telefono"
             name="telefono"
@@ -114,7 +114,7 @@ function Register(props) {
           </div>
         )}
         <button type="submit" className="btn btn-primary">
-          Register
+          Registrarse
         </button>
       </form>
     </div>

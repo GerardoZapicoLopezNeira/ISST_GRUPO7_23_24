@@ -10,10 +10,13 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import User from './pages/User';
 import Tools from './pages/MyTools';
+import PublishTool from './pages/PublishTool';
 import './App.css';
 import { getAuthToken, request, setAuthHeader } from './helpers/axios_helper';
 
 function App() {
+
+  const [userNotFound, setUserNotFound] = useState(null);
 
   const logout = () => {
     setAuthHeader(null);
@@ -39,10 +42,12 @@ function App() {
           localStorage.setItem("direccion", response.data.direccion);
           localStorage.setItem("dni", response.data.dni);
           localStorage.setItem("nombre", response.data.nombre);
+          setUserNotFound(null);
           window.location.href = "/";
         }).catch(
           (error) => {
             setAuthHeader(null);
+            setUserNotFound("Usuario no encontrado. \n Por favor, inténtelo de nuevo.");
           }
         );
   };
@@ -128,13 +133,15 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/search" element={<SearchTools />} />
             {getAuthToken() === null &&
-            <Route path="/login" element={<Login onLogin={onLogin} />} />}
+            <Route path="/login" element={<Login onLogin={onLogin} found={userNotFound}/>} />}
             {getAuthToken() === null &&
             <Route path="/register" element={<Register onRegister={onRegister} />} />}
-            {getAuthToken() === null &&
+            {getAuthToken() !== null &&
             <Route path="/user" element={<User />} />}
-            {getAuthToken() === null &&
+            {getAuthToken() !== null &&
             <Route path="/mytools" element={<Tools />} />}
+            {getAuthToken() !== null &&
+            <Route path="/mytools/publish" element={<PublishTool />} />}
           </Routes>
         </div>
       </div>

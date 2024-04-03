@@ -1,6 +1,9 @@
 package DIY4Rent.Grupo0734.DIY4Rent.model;
 import java.sql.Blob;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,15 +14,12 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 
 @Entity
 @Data
-@Table(name="herramientas")
+@Table(name="herramienta")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Herramienta {
@@ -27,9 +27,7 @@ public class Herramienta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_propietario")
-    private Usuario propietario;
+
     // @Column(name = "disponibilidad", nullable = false)
     private Boolean disponibilidad;
     // @Column(name = "tipo", nullable = false)
@@ -39,7 +37,11 @@ public class Herramienta {
     @Column(name = "precio_diario") 
     private Double precioDiario;
     // @Column(name = "foto")
-    private Blob foto;
+    // private byte[] foto;
     @Column(name = "estado_fisico")
     private String estadoFisico;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
 }
