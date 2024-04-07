@@ -83,21 +83,23 @@ function App() {
             <h1 className="logo">DIY4Rent</h1>
             <ul className="menu">
               <li className="menu-item">
-                <Link to="/">Home</Link>
+                <Link to="/">Inicio</Link>
               </li>
+{/*            
               <li className="menu-item">
-                <Link to="/search">Search Tools</Link>
+                <Link to="/search">Busca herramientas</Link>
               </li>
+*/}
               {getAuthToken() !== null &&
                 <li className="menu-item">
                   <Link to="/user">Mi cuenta</Link>
                 </li>
               }
               <li className="menu-item">
-                <Link to="/about">About</Link>
+                <Link to="/about">Sobre nosotros</Link>
               </li>
               <li className="menu-item">
-                <Link to="/contact">Contact</Link>
+                <Link to="/contact">Contacto</Link>
               </li>
               {getAuthToken() === null &&
                 <li className="menu-item">
@@ -131,7 +133,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/search" element={<SearchTools />} />
+            {/*<Route path="/search" element={<SearchTools />} />*/}
             {getAuthToken() === null &&
             <Route path="/login" element={<Login onLogin={onLogin} found={userNotFound}/>} />}
             {getAuthToken() === null &&
