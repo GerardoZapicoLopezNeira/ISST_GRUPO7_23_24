@@ -1,7 +1,4 @@
 package DIY4Rent.Grupo0734.DIY4Rent.model;
-import java.sql.Blob;
-
-import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -28,17 +25,22 @@ public class Herramienta {
     private Long id;
 
 
-    // @Column(name = "disponibilidad", nullable = false)
+    @Column(name = "disponibilidad", nullable = false)
     private Boolean disponibilidad;
-    // @Column(name = "tipo", nullable = false)
+
+    @Column(name = "tipo", nullable = false)
     private String tipo;
-    // @Column(name = "descripcion", nullable = false)
+
+    @Column(name = "descripcion", nullable = false)
     private String descripcion;
+    
     @Column(name = "precio_diario") 
     private Double precioDiario;
+    
     // @Column(name = "foto")
     // private byte[] foto;
-    @Column(name = "estado_fisico")
+
+    @Column(name = "estado_fisico", nullable = false)
     private String estadoFisico;
 
     @ManyToOne(cascade = CascadeType.ALL)

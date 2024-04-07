@@ -1,7 +1,6 @@
 package DIY4Rent.Grupo0734.DIY4Rent.config;
 
 
-import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

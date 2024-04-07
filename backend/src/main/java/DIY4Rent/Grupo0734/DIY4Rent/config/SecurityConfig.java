@@ -3,7 +3,6 @@ package DIY4Rent.Grupo0734.DIY4Rent.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -22,7 +21,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf(csrf -> csrf.disable())
-                .headers(headers-> headers.frameOptions().disable())
+                .headers(headers-> headers.disable())
                 .exceptionHandling((exception)-> exception.authenticationEntryPoint(userAuthenticationEntryPoint))
                 .cors(cors -> cors.disable())
                 .addFilterBefore(new JwtAuthFilter(userAuthenticationProvider), BasicAuthenticationFilter.class)

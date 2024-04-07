@@ -7,7 +7,6 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import DIY4Rent.Grupo0734.DIY4Rent.dto.UserDto;
-import DIY4Rent.Grupo0734.DIY4Rent.model.Usuario;
 import DIY4Rent.Grupo0734.DIY4Rent.service.UsuarioService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;

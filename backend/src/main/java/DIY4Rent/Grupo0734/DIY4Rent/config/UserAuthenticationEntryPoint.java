@@ -2,9 +2,6 @@ package DIY4Rent.Grupo0734.DIY4Rent.config;
 
 import java.io.IOException;
 
-import javax.print.attribute.standard.Media;
-import javax.sql.rowset.serial.SerialException;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;

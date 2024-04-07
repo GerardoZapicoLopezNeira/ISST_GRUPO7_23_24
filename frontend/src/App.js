@@ -111,12 +111,12 @@ function App() {
               }
               {getAuthToken() !== null &&
                 <li className="menu-item">
-                  <button className="logout" onClick={logout}>Cerrar sesión</button>
+                  <Link to="/mytools">Mis Herramientas</Link>
                 </li>
               }
               {getAuthToken() !== null &&
                 <li className="menu-item">
-                  <Link to="/mytools">Mis Herramientas</Link>
+                  <button className="logout" onClick={logout}>Cerrar sesión</button>
                 </li>
               }
 

@@ -1,10 +1,6 @@
 package DIY4Rent.Grupo0734.DIY4Rent.dto;
 
-import java.sql.Blob;
 
-import org.springframework.web.multipart.MultipartFile;
-
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

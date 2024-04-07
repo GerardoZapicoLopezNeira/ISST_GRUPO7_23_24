@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.HerramientaDto;
 import DIY4Rent.Grupo0734.DIY4Rent.mapper.HerramientaMapper;
 import DIY4Rent.Grupo0734.DIY4Rent.model.Herramienta;
-import DIY4Rent.Grupo0734.DIY4Rent.model.Usuario;
 import DIY4Rent.Grupo0734.DIY4Rent.repo.HerramientaRepository;
 import DIY4Rent.Grupo0734.DIY4Rent.repo.UsuarioRepository;
 
@@ -52,7 +51,7 @@ public class HerramientaService {
         herramientaRepository.save(savedHerramienta);
         return herramientaMapper.toHerramientaDto(savedHerramienta);
     }
-
+/*
     public Herramienta updateHerramientaById(Long id, Herramienta newHerramientaData) {
         Optional<Herramienta> oldHerramientaData = herramientaRepository.findById(id);
         if (oldHerramientaData.isPresent()) {
@@ -73,6 +72,6 @@ public class HerramientaService {
     public void deleteHerramientaById(Long id) {
         herramientaRepository.deleteById(id);
     }
-
+ */
     
 }

@@ -14,7 +14,6 @@ import DIY4Rent.Grupo0734.DIY4Rent.dto.UserDto;
 import DIY4Rent.Grupo0734.DIY4Rent.exceptions.AppException;
 
 import java.nio.CharBuffer;
-import java.util.List;
 import java.util.Optional;
 
 @Service

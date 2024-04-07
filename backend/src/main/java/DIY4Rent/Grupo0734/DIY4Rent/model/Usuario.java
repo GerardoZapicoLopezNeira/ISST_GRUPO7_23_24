@@ -1,7 +1,6 @@
 package DIY4Rent.Grupo0734.DIY4Rent.model;
 
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -25,22 +24,30 @@ import jakarta.persistence.GenerationType;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Usuario {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    // @Column(name = "username", nullable = false, unique = true)
+    
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
-    // @Column(name = "password", nullable = false)
+    
+    @Column(name = "password", nullable = false)
     private String password;
-    // @Column(name = "dni", nullable = false, unique = true)
+    
+    @Column(name = "dni", nullable = false, unique = true)
     private String dni;
-    // @Column(name = "nombre", nullable = false)
+    
+    @Column(name = "nombre", nullable = false)
     private String nombre;
-    // @Column(name = "direccion", nullable = false)
+    
+    @Column(name = "direccion", nullable = false)
     private String direccion;
-    // @Column(name = "email", nullable = false, unique = true)
+    
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
-    // @Column(name = "telefono", nullable = false)
+    
+    @Column(name = "telefono", nullable = false)
     private String telefono;
 
     
