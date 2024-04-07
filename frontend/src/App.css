@@ -11,36 +11,64 @@ body {
 }
 
 /* Navigation bar styles */
+/* CSS for Navbar */
 .navbar {
-  background-color: #282c34;
-  color: white;
+  background-color: #333;
+  color: #fff;
+}
+
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem 2rem; /* Padding for navbar content */
-}
-
-.navbar .container {
-  display: flex;
-  align-items: center;
+  padding: 10px 20px;
 }
 
 .logo {
   font-size: 1.5rem;
-  font-weight: bold;
-  margin-right: 1rem; /* Margin for logo spacing */
 }
 
 .menu {
-  display: flex;
   list-style: none;
-  margin: 0;
-  padding: 0;
-  font-weight: bold;
+  display: flex;
 }
 
 .menu-item {
-  margin-right: 1rem;
+  margin: 0 10px;
+}
+
+.menu-item a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.menu-item a:hover {
+  text-decoration: underline;
+}
+
+.logout {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Responsive Navbar */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .menu-item {
+    margin: 5px 0;
+  }
 }
 
 .menu-item a {
