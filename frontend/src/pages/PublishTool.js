@@ -29,6 +29,7 @@ function PublishTool() {
         request("POST", "/users/" + localStorage.getItem("userId") + "/herramientas", infoTool).then(
             (response) => {
                 console.log(response.data);
+                window.location.href = "/mytools";
             }).catch(
                 (error) => {
                     console.log(error);
