@@ -2,7 +2,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import SearchTools from './pages/SearchTools';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -11,6 +10,7 @@ import Register from './pages/Register';
 import User from './pages/User';
 import Tools from './pages/MyTools';
 import PublishTool from './pages/PublishTool';
+import ToolDetails from './pages/ToolDetails';
 import './App.css';
 import { getAuthToken, request, setAuthHeader } from './helpers/axios_helper';
 
@@ -22,16 +22,7 @@ function App() {
 
   const logout = () => {
     setAuthHeader(null);
-    localStorage.removeItem("userId");
-    localStorage.removeItem("username");
-    localStorage.removeItem("email");
-    localStorage.removeItem("telefono");
-    localStorage.removeItem("direccion");
-    localStorage.removeItem("dni");
-    localStorage.removeItem("nombre");
-    localStorage.removeItem("lat");
-    localStorage.removeItem("lng");
-
+    localStorage.clear();
     window.location.href = "/";
   };
 
@@ -42,13 +33,6 @@ function App() {
         setAuthHeader(response.data.token);
         localStorage.setItem("userId", response.data.id);
         localStorage.setItem("username", response.data.username);
-        localStorage.setItem("email", response.data.email);
-        localStorage.setItem("telefono", response.data.telefono);
-        localStorage.setItem("direccion", response.data.direccion);
-        localStorage.setItem("dni", response.data.dni);
-        localStorage.setItem("nombre", response.data.nombre);
-        localStorage.setItem("lat", response.data.lat);
-        localStorage.setItem("lng", response.data.lng);
         setUserNotFound(null);
         window.location.href = "/";
       }).catch(
@@ -66,13 +50,6 @@ function App() {
         setAuthHeader(response.data.token);
         localStorage.setItem("userId", response.data.id);
         localStorage.setItem("username", response.data.username);
-        localStorage.setItem("email", response.data.email);
-        localStorage.setItem("telefono", response.data.telefono);
-        localStorage.setItem("direccion", response.data.direccion);
-        localStorage.setItem("dni", response.data.dni);
-        localStorage.setItem("nombre", response.data.nombre);
-        localStorage.setItem("lat", response.data.lat);
-        localStorage.setItem("lng", response.data.lng);
         window.location.href = "/";
       }).catch(
         (error) => {
@@ -151,6 +128,7 @@ function App() {
               <Route path="/mytools" element={<Tools />} />}
             {getAuthToken() !== null &&
               <Route path="/mytools/publish" element={<PublishTool />} />}
+            <Route path="/tool/:id" element={<ToolDetails />} />
           </Routes>
         </div>
       </div>

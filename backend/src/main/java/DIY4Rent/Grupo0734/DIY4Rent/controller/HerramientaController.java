@@ -32,8 +32,8 @@ public class HerramientaController {
     private UsuarioRepository usuarioRepository;
 
     @GetMapping("/api/v1/herramientas/{id}")
-    public ResponseEntity<Herramienta> getHerramientaById(@PathVariable Long id) {
-        Herramienta herramientaData = herramientaService.getHerramientaById(id);
+    public ResponseEntity<HerramientaDto> getHerramientaById(@PathVariable Long id) {
+        HerramientaDto herramientaData = herramientaService.getHerramientaById(id);
         if (herramientaData != null) {
             return new ResponseEntity<>(herramientaData, HttpStatus.OK);
         }
@@ -78,4 +78,12 @@ public class HerramientaController {
         return new ResponseEntity<>(newHerramienta, HttpStatus.CREATED);
     }
 
+    @GetMapping("/api/v1/herramientas")
+    public ResponseEntity<List<HerramientaDto>> getAllHerramientas() {
+        List<HerramientaDto> herramientaList = herramientaService.getAllHerramientas();
+        if (herramientaList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(herramientaList, HttpStatus.OK);
+    }
 }

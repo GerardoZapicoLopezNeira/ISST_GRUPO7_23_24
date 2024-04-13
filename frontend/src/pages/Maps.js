@@ -9,16 +9,15 @@ import {
 } from "@vis.gl/react-google-maps";
 import credentials from '../helpers/credentials';
 
-function Maps() {
+function Maps(props) {
 
-    const defaultPosition = { lat: 0, lng: 0 };
-    const position = localStorage.getItem("lat") && localStorage.getItem("lng") ? { lat: parseFloat(localStorage.getItem("lat")), lng: parseFloat(localStorage.getItem("lng")) } : defaultPosition;
+    const position = {lat: props.lat, lng: props.lng};
     const [open, setOpen] = useState(false);
 
 
 
     return (
-        position.lat === 0 && position.lng === 0 ? <></> :
+        position.lat === null && position.lng === null ? <p>No has registrado tu ubicación</p> :
         <APIProvider apiKey={credentials.mapsApiKey}>
             <div style={{ height: "100vh", width: "100%" }}>
                 <Map defaultZoom={15} defaultCenter={position} mapId={credentials.mapId}>

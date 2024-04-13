@@ -1,29 +1,25 @@
 import { useGeolocation } from '@uidotdev/usehooks';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Register(props) {
 
 
-  const setLocation = () => {
-    if (!navigator.geolocation) {
-      console.log("Tu navegador no sorporta Geolocalización")
-    } else if (formData.lat !== '') {
-      console.log("Geo loc ya registrada")
-    } else {
-      navigator.geolocation.getCurrentPosition(setLoc, errorLoc)
-    }
 
-    function setLoc(position) {
-      const crd = position.coords
-      setFormData({ ...formData, lat: crd.latitude, lng: crd.longitude})
-    }
-    
-    function errorLoc() {
-      console.log("No se pudo almacenar tu localización.")
-    }
-  }
+  useEffect(() => {
+    const getPosition = async () => {
+      try {
+        const position = await new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject);
+        });
+        const { latitude, longitude } = position.coords;
+        setFormData({ ...formData, lat: latitude, lng: longitude });
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
 
-
+    getPosition();
+  }, []); // This effect runs only once when the component mounts
 
   const [formData, setFormData] = useState({
     dni: '',
@@ -45,7 +41,6 @@ function Register(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setLocation();
     props.onRegister(event, formData); // Pass formData directly to onRegister
   };
 
