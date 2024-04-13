@@ -18,6 +18,7 @@ public class HerramientaDto {
         private String descripcion;
         private Double precioDiario;
         private String estadoFisico;
+        private UserDto usuario;
         // private MultipartFile foto;
         
 }   

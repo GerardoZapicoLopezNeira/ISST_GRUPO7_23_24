@@ -1,6 +1,26 @@
-import React, { useState } from 'react';
+import { useGeolocation } from '@uidotdev/usehooks';
+import React, { useState, useEffect } from 'react';
 
 function Register(props) {
+
+
+
+  useEffect(() => {
+    const getPosition = async () => {
+      try {
+        const position = await new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject);
+        });
+        const { latitude, longitude } = position.coords;
+        setFormData({ ...formData, lat: latitude, lng: longitude });
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    getPosition();
+  }, []); // This effect runs only once when the component mounts
+
   const [formData, setFormData] = useState({
     dni: '',
     nombre: '',
@@ -8,11 +28,14 @@ function Register(props) {
     email: '',
     telefono: '',
     username: '',
-    password: ''
+    password: '',
+    lat: '',
+    lng: ''
   });
   const [validationErrors, setValidationErrors] = useState({});
   const handleChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
+    setFormData({ ...formData, [event.target.name]: event.target.value });    
+    
     console.log(formData);
   };
 

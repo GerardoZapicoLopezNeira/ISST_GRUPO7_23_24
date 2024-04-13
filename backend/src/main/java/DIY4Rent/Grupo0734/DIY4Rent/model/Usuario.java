@@ -50,6 +50,12 @@ public class Usuario {
     @Column(name = "telefono", nullable = false)
     private String telefono;
 
+    @Column(name="latitude")
+    private Float lat;
+
+    @Column(name="longitude")
+    private Float lng;
+
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy="usuario", cascade=CascadeType.ALL)
     private List<Herramienta> herramienta;
