@@ -1,5 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import { getAuthToken, request, setAuthHeader } from '../helpers/axios_helper';
+import Maps from './Maps';
 
 function User() {
   
@@ -16,7 +17,8 @@ function User() {
       <p>Email: {localStorage.getItem("email")}</p>
       <p>Teléfono: {localStorage.getItem("telefono")}</p>
       
-      
+      <Maps />
+
     </div>
   )
 }

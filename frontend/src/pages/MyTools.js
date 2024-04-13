@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getAuthToken, request, setAuthHeader } from '../helpers/axios_helper';
 import { Link } from 'react-router-dom';
+import Maps from './Maps';
 
 
 
@@ -46,6 +47,7 @@ function MyTools() {
             <p>¡Todavía no tienes herramientas publicadas!</p>
         )
         }
+        <Maps/>
         <Link to="/myTools/publish"><button>Publica aquí tu nueva herramienta</button></Link>
 
     </div>

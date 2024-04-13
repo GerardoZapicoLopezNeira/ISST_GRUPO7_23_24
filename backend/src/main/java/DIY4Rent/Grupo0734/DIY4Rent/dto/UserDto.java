@@ -20,5 +20,7 @@ public class UserDto {
     private String email;
     private String telefono;
     private String token;
+    private Float lat;
+    private Float lng;
 
 }

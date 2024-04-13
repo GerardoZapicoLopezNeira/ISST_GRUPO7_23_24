@@ -1,6 +1,30 @@
+import { useGeolocation } from '@uidotdev/usehooks';
 import React, { useState } from 'react';
 
 function Register(props) {
+
+
+  const setLocation = () => {
+    if (!navigator.geolocation) {
+      console.log("Tu navegador no sorporta Geolocalización")
+    } else if (formData.lat !== '') {
+      console.log("Geo loc ya registrada")
+    } else {
+      navigator.geolocation.getCurrentPosition(setLoc, errorLoc)
+    }
+
+    function setLoc(position) {
+      const crd = position.coords
+      setFormData({ ...formData, lat: crd.latitude, lng: crd.longitude})
+    }
+    
+    function errorLoc() {
+      console.log("No se pudo almacenar tu localización.")
+    }
+  }
+
+
+
   const [formData, setFormData] = useState({
     dni: '',
     nombre: '',
@@ -8,16 +32,20 @@ function Register(props) {
     email: '',
     telefono: '',
     username: '',
-    password: ''
+    password: '',
+    lat: '',
+    lng: ''
   });
   const [validationErrors, setValidationErrors] = useState({});
   const handleChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
+    setFormData({ ...formData, [event.target.name]: event.target.value });    
+    
     console.log(formData);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setLocation();
     props.onRegister(event, formData); // Pass formData directly to onRegister
   };
 
