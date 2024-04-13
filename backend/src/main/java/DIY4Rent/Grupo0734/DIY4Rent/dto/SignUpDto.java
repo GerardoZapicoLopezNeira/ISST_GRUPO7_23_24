@@ -30,6 +30,8 @@ public class SignUpDto {
 
     @NotEmpty
     private String username;
+    private Float lat;
+    private Float lng;
 
     @NotEmpty
     private char[] password;

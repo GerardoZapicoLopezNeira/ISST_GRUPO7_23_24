@@ -11,6 +11,5 @@ public interface HerramientaMapper {
             
         HerramientaDto toHerramientaDto(Herramienta herramienta);
     
-        @Mapping(target="usuario", ignore=true)
         Herramienta herramientaDtoToHerramienta(HerramientaDto herramientaDto);
 }

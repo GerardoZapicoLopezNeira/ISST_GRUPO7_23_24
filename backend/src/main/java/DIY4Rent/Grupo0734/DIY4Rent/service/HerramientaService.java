@@ -36,9 +36,11 @@ public class HerramientaService {
         
     }
 
-    public Herramienta getHerramientaById(Long id) {
+    public HerramientaDto getHerramientaById(Long id) {
         Optional<Herramienta> herramientaData = herramientaRepository.findById(id);
-        return herramientaData.orElse(null);
+        herramientaData.orElse(null);
+        HerramientaDto herramientaDto = herramientaMapper.toHerramientaDto(herramientaData.get());
+        return herramientaDto;
     }
 
     public HerramientaDto createHerramienta(HerramientaDto herramientaDto, Long usuarioId) {
@@ -73,5 +75,12 @@ public class HerramientaService {
         herramientaRepository.deleteById(id);
     }
  */
+    public List<HerramientaDto> getAllHerramientas() {
+        List<HerramientaDto> herramientas = herramientaRepository.findAll().stream().map(
+            herramienta -> {
+                return herramientaMapper.toHerramientaDto(herramienta);
+            }).collect(Collectors.toList());
+            return herramientas;
+    }
     
 }
