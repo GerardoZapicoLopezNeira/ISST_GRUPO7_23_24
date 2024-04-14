@@ -1,18 +1,21 @@
 package DIY4Rent.Grupo0734.DIY4Rent.controller;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.service.annotation.DeleteExchange;
 
 import DIY4Rent.Grupo0734.DIY4Rent.config.UserAuthenticationProvider;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.CredentialsDto;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.LocationDto;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.SignUpDto;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.UserDto;
+import DIY4Rent.Grupo0734.DIY4Rent.dto.UserInfoDto;
 import DIY4Rent.Grupo0734.DIY4Rent.service.UsuarioService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,8 +60,8 @@ public class UsuarioController {
     }
 
     @PutMapping("/api/v1/users/{username}")
-    public ResponseEntity<UserDto> updateUser(@PathVariable String username, @RequestBody UserDto user) {
-        UserDto updatedUser = usuarioService.updateUser(username, user);
+    public ResponseEntity<UserDto> updateUser(@PathVariable String username, @RequestBody UserInfoDto userInfo) {
+        UserDto updatedUser = usuarioService.updateUser(username, userInfo);
         return ResponseEntity.ok(updatedUser);
     }
    
@@ -67,4 +70,10 @@ public class UsuarioController {
         UserDto updatedUser = usuarioService.updateUserLocation(username, location.getLat(), location.getLng());
         return ResponseEntity.ok(updatedUser);
     }
+
+    @DeleteMapping("/api/v1/users/{username}")
+    public ResponseEntity<Void> deleteUser(@PathVariable String username) {
+        usuarioService.deleteUser(username);
+        return ResponseEntity.noContent().build();
+    } 
 }

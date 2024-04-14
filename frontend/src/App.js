@@ -12,14 +12,13 @@ import Tools from './pages/MyTools';
 import PublishTool from './pages/PublishTool';
 import ToolDetails from './pages/ToolDetails';
 import EditTool from './pages/EditTool';
+import EditUser from './pages/EditUser';
 import './App.css';
 import { getAuthToken, request, setAuthHeader } from './helpers/axios_helper';
 
 function App() {
 
   const [userNotFound, setUserNotFound] = useState(null);
-
-  
 
   const logout = () => {
     setAuthHeader(null);
@@ -36,6 +35,14 @@ function App() {
         localStorage.setItem("username", response.data.username);
         setUserNotFound(null);
         window.location.href = "/";
+        if (response.data.token !== null) {
+          console.log("Login correcto");
+        } else {
+          console.log("Login incorrecto");
+          setAuthHeader(null);
+          setUserNotFound("Usuario no encontrado. \n Por favor, inténtelo de nuevo.");
+        }
+
       }).catch(
         (error) => {
           setAuthHeader(null);
@@ -132,6 +139,7 @@ function App() {
             <Route path="/tool/:id" element={<ToolDetails />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
             <Route path="/mytools/edit/:id" element={<EditTool />} />
+            <Route path="/user/edit/:id" element={<EditUser />} />
           </Routes>
         </div>
       </div>

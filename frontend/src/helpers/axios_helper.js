@@ -8,8 +8,14 @@ export const getAuthToken = () => {
 };
 
 export const setAuthHeader = (token) => {
-    window.localStorage.setItem("auth_token", token ? token : null);
-  };
+    if (token !== null) {
+        window.localStorage.setItem("auth_token", token);
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    } else {
+        window.localStorage.removeItem("auth_token");
+        delete axios.defaults.headers.common["Authorization"];
+    }
+};
   
 
 export const request = (method, url, data) => {
