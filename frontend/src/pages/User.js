@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { request } from '../helpers/axios_helper';
 import MapsUser from './MapsUser';
+import { Link } from 'react-router-dom';
 
 function User() {
   const [userData, setUserData] = useState({});
@@ -30,6 +31,7 @@ function User() {
           <p>Dirección: {userData.direccion}</p>
           <p>Email: {userData.email}</p>
           <p>Teléfono: {userData.telefono}</p>
+          <Link to={`/user/edit/${userData.id}`}>Editar usuario</Link>
         </>
       ) : (
         <p>Cargando datos del usuario...</p>

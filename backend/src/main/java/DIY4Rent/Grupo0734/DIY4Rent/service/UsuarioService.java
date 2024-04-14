@@ -11,6 +11,7 @@ import DIY4Rent.Grupo0734.DIY4Rent.repo.UsuarioRepository;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.CredentialsDto;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.SignUpDto;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.UserDto;
+import DIY4Rent.Grupo0734.DIY4Rent.dto.UserInfoDto;
 import DIY4Rent.Grupo0734.DIY4Rent.exceptions.AppException;
 
 import java.nio.CharBuffer;
@@ -56,14 +57,14 @@ public class UsuarioService {
         return userMapper.toUserDto(savedUser);
     }
 
-    public UserDto updateUser(String username, UserDto userDto) {
+    public UserDto updateUser(String username, UserInfoDto userInfo) {
         Usuario usuario = usuarioRepository.findByUsername(username)
             .orElseThrow(() -> new AppException("Error: Usuario no encontrado", HttpStatus.NOT_FOUND));
-        usuario.setNombre(userDto.getNombre());
-        usuario.setTelefono(userDto.getTelefono());
-        usuario.setDireccion(userDto.getDireccion());
-        usuario.setDni(userDto.getDni());
-        usuario.setEmail(userDto.getEmail());
+        usuario.setNombre(userInfo.getNombre());
+        usuario.setDni(userInfo.getDni());
+        usuario.setDireccion(userInfo.getDireccion());
+        usuario.setEmail(userInfo.getEmail());
+        usuario.setTelefono(userInfo.getTelefono());
 
         Usuario savedUser = usuarioRepository.save(usuario);
 
@@ -79,5 +80,12 @@ public class UsuarioService {
         Usuario savedUser = usuarioRepository.save(usuario);
 
         return userMapper.toUserDto(savedUser);
+    }
+
+    public boolean deleteUser(String username) {
+        Usuario usuario = usuarioRepository.findByUsername(username)
+            .orElseThrow(() -> new AppException("Error: Usuario no encontrado", HttpStatus.NOT_FOUND));
+        usuarioRepository.delete(usuario);
+        return true;
     }
 }
