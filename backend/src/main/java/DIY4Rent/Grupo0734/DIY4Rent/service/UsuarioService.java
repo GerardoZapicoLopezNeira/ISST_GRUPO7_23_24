@@ -56,4 +56,28 @@ public class UsuarioService {
         return userMapper.toUserDto(savedUser);
     }
 
+    public UserDto updateUser(String username, UserDto userDto) {
+        Usuario usuario = usuarioRepository.findByUsername(username)
+            .orElseThrow(() -> new AppException("Error: Usuario no encontrado", HttpStatus.NOT_FOUND));
+        usuario.setNombre(userDto.getNombre());
+        usuario.setTelefono(userDto.getTelefono());
+        usuario.setDireccion(userDto.getDireccion());
+        usuario.setDni(userDto.getDni());
+        usuario.setEmail(userDto.getEmail());
+
+        Usuario savedUser = usuarioRepository.save(usuario);
+
+        return userMapper.toUserDto(savedUser);
+    }
+
+    public UserDto updateUserLocation(String username, Float lat, Float lng) {
+        Usuario usuario = usuarioRepository.findByUsername(username)
+            .orElseThrow(() -> new AppException("Error: Usuario no encontrado", HttpStatus.NOT_FOUND));
+        usuario.setLat(lat);
+        usuario.setLng(lng);
+
+        Usuario savedUser = usuarioRepository.save(usuario);
+
+        return userMapper.toUserDto(savedUser);
+    }
 }

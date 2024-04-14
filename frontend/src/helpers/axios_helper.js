@@ -8,12 +8,9 @@ export const getAuthToken = () => {
 };
 
 export const setAuthHeader = (token) => {
-    if (token !== null) {
-      window.localStorage.setItem("auth_token", token);
-    } else {
-      window.localStorage.removeItem("auth_token");
-    }
-};
+    window.localStorage.setItem("auth_token", token ? token : null);
+  };
+  
 
 export const request = (method, url, data) => {
     let headers = {};
