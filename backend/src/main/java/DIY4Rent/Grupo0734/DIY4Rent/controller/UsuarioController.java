@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import DIY4Rent.Grupo0734.DIY4Rent.config.UserAuthenticationProvider;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.CredentialsDto;
+import DIY4Rent.Grupo0734.DIY4Rent.dto.LocationDto;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.SignUpDto;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.UserDto;
 import DIY4Rent.Grupo0734.DIY4Rent.service.UsuarioService;
@@ -16,10 +17,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.parsing.Location;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RequiredArgsConstructor
 @RestController
@@ -51,7 +56,15 @@ public class UsuarioController {
         return ResponseEntity.created(URI.create("/users/" + createdUser.getId())).body(createdUser); 
     }
 
-
-    
+    @PutMapping("/api/v1/users/{username}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable String username, @RequestBody UserDto user) {
+        UserDto updatedUser = usuarioService.updateUser(username, user);
+        return ResponseEntity.ok(updatedUser);
+    }
    
+    @PutMapping("/api/v1/users/{username}/location")
+    public ResponseEntity<UserDto> updateUserLocation(@PathVariable String username, @RequestBody LocationDto location){
+        UserDto updatedUser = usuarioService.updateUserLocation(username, location.getLat(), location.getLng());
+        return ResponseEntity.ok(updatedUser);
+    }
 }

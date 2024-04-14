@@ -11,6 +11,7 @@ import User from './pages/User';
 import Tools from './pages/MyTools';
 import PublishTool from './pages/PublishTool';
 import ToolDetails from './pages/ToolDetails';
+import EditTool from './pages/EditTool';
 import './App.css';
 import { getAuthToken, request, setAuthHeader } from './helpers/axios_helper';
 
@@ -129,6 +130,8 @@ function App() {
             {getAuthToken() !== null &&
               <Route path="/mytools/publish" element={<PublishTool />} />}
             <Route path="/tool/:id" element={<ToolDetails />} />
+            <Route path="*" element={<h1>404 Not Found</h1>} />
+            <Route path="/mytools/edit/:id" element={<EditTool />} />
           </Routes>
         </div>
       </div>

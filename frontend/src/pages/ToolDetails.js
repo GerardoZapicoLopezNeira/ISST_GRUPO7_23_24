@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { request } from '../helpers/axios_helper';
-import Maps from './Maps';
+import MapsTool from './MapsTool';
 
 function ToolDetails() {
   const { id } = useParams(); // Obteniendo el ID de la ruta
@@ -36,7 +36,7 @@ function ToolDetails() {
           <p>Dirección: {tool.usuario.direccion}</p>
           <p>Email: {tool.usuario.email}</p>
           <p>Teléfono: {tool.usuario.telefono}</p>
-          <Maps lat={tool.usuario.lat} lng={tool.usuario.lng} />
+          <MapsTool lat={tool.usuario.lat} lng={tool.usuario.lng} />
         </>
       )}
     </div>

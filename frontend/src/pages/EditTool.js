@@ -1,51 +1,68 @@
-import React, { useEffect, useState } from 'react'
-import { getAuthToken, request, setAuthHeader } from '../helpers/axios_helper';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { request } from '../helpers/axios_helper';
 
-function PublishTool() {
 
-    const [infoTool, setInfoTool] = useState({
-        tipo: '',
-        descripcion: '',
-        disponibilidad: '',
-        precioDiario: '',
-        estadoFisico: ''
-    });
+function EditTool() {
+    const { id } = useParams(); // Get ID from route
+    const [formData, setFormData] = useState({tipo: '',
+    descripcion: '',
+    disponibilidad: '',
+    precioDiario: '',
+    estadoFisico: ''});
+
+    useEffect(() => {
+        request('GET', `/herramientas/${id}`)
+            .then((response) => {
+                console.log(response.data);
+                setFormData(response.data);            
+            })
+            .catch((error) => {
+                console.log('Error:', error);
+            });
+    }, [id]);
+
     const handleChange = (event) => {
         if (event.target.name === "foto") {
-            setInfoTool({ ...infoTool, [event.target.name]: event.target.files[0] });
+            setFormData({ ...formData, [event.target.name]: event.target.files[0] });
         } else if (event.target.name === "disponibilidad" && event.target.value === "Disponible") {
-            setInfoTool({ ...infoTool, [event.target.name]: "true" });
+            setFormData({ ...formData, [event.target.name]: "true" });
         } else if (event.target.name === "disponibilidad" && event.target.value === "No disponible") {
-            setInfoTool({ ...infoTool, [event.target.name]: "false" });
+            setFormData({ ...formData, [event.target.name]: "false" });
         } else {
-            setInfoTool({ ...infoTool, [event.target.name]: event.target.value });
+            setFormData({ ...formData, [event.target.name]: event.target.value });
         }
-        console.log(infoTool);
+        console.log(formData);
     };
 
-    const publishTool = async (event, infoTool) => {
+    const editTool = async (event, formData) => {
         event.preventDefault();
-        console.log(infoTool);
-        request("POST", "/users/" + localStorage.getItem("userId") + "/herramientas", infoTool).then(
-            (response) => {
-                console.log(response.data);
-                window.location.href = "/mytools";
-            }).catch(
-                (error) => {
-                    console.log(error);
-                }
-            );
+        try {
+            const response = await request('PUT', `/herramientas/${id}`, formData);
+            window.location.href = "/mytools";
+            console.log(response.data);
+        } catch (error) {
+            console.log('Error:', error);
+        }
+    };
+
+    const deleteTool = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await request('DELETE', `/herramientas/${id}`);
+            window.location.href = "/mytools";
+            console.log(response.data);
+        } catch (error) {
+            console.log('Error:', error);
+        }
     }
 
 
     return (
         <div>
-            <h1>Publica tu herramienta</h1>
-            <p>Aquí puedes publicar tu nueva herramienta</p>
-            <p>Recuerda que tienes que rellenar todos los campos</p>
-            <div className="register-form">
-                <h2>Publicar una herramienta</h2>
-                <form onSubmit={(event) => publishTool(event, infoTool)}>
+            <h1>Editar herramienta</h1>
+            <p>Modifica los datos de tu herramienta</p>
+            <form onSubmit={(event) => editTool(event, formData)}>
                     <div className="form-group">
                         <label htmlFor="tipo">Tipo de herramienta</label>
                         <input
@@ -53,7 +70,7 @@ function PublishTool() {
                             className="form-control"
                             id="tipo"
                             name="tipo"
-                            value={infoTool.tipo}
+                            value={formData.tipo}
                             onChange={handleChange}
                             required
                         />
@@ -65,7 +82,7 @@ function PublishTool() {
                             className="form-control"
                             id="descripcion"
                             name="descripcion"
-                            value={infoTool.descripcion}
+                            value={formData.descripcion}
                             onChange={handleChange}
                             required
                         />
@@ -85,9 +102,9 @@ function PublishTool() {
                             step="any"
                             className="form-control"
                             id="precioDiario"
-                            name="precioDiario"
                             min="0"
-                            value={infoTool.precioDiario}
+                            name="precioDiario"
+                            value={formData.precioDiario}
                             onChange={handleChange}
                             required
                         />
@@ -117,10 +134,13 @@ function PublishTool() {
                     <button type="submit" className="btn btn-primary">
                         Publicar
                     </button>
+
                 </form>
-            </div>
+                <button type="button" className="btn btn-danger" onClick={(event) => deleteTool(event)}>
+                        Eliminar
+                </button>
         </div>
     );
 }
 
-export default PublishTool;
+export default EditTool;

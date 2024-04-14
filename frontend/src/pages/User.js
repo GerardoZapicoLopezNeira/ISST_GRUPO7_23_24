@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { request } from '../helpers/axios_helper';
-import Maps from './Maps';
+import MapsUser from './MapsUser';
 
 function User() {
   const [userData, setUserData] = useState({});
@@ -35,7 +35,7 @@ function User() {
         <p>Cargando datos del usuario...</p>
       )}
       
-      <Maps lat={userData.lat} lng={userData.lng}/>
+      <MapsUser lat={userData.lat} lng={userData.lng}/>
     </div>
   );
 }

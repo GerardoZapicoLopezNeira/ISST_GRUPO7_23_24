@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RequiredArgsConstructor
 @RestController
@@ -39,22 +42,6 @@ public class HerramientaController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-/*
-    @PutMapping("/api/v1/herramientas/{id}")
-    public ResponseEntity<Herramienta> updateHerramientaById(@PathVariable Long id, @RequestBody Herramienta newHerramientaData) {
-        Herramienta updatedHerramientaData = herramientaService.updateHerramientaById(id, newHerramientaData);
-        if (updatedHerramientaData != null) {
-            return new ResponseEntity<>(updatedHerramientaData, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @DeleteMapping("/api/v1/herramientas/{id}")
-    public ResponseEntity<HttpStatus> deleteHerramientaById(@PathVariable Long id) {
-        herramientaService.deleteHerramientaById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-*/  
 
     @GetMapping("/api/v1/users/{usuarioId}/herramientas")
     public ResponseEntity<List<HerramientaDto>> getAllHerramientasByUsuarioId(@PathVariable(value="usuarioId") Long usuarioId) {
@@ -86,4 +73,22 @@ public class HerramientaController {
         }
         return new ResponseEntity<>(herramientaList, HttpStatus.OK);
     }
+
+   @PutMapping("/api/v1/herramientas/{id}")
+    public ResponseEntity<HerramientaDto> updateHerramientaById(@PathVariable Long id, @RequestBody HerramientaDto herramientaDto) {
+        HerramientaDto updatedHerramientaData = herramientaService.updateHerramientaById(id, herramientaDto);
+        if (updatedHerramientaData != null) {
+            return new ResponseEntity<>(updatedHerramientaData, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping("/api/v1/herramientas/{id}")
+    public ResponseEntity<HttpStatus> deleteHerramienta(@PathVariable Long id) {
+        if (herramientaService.deleteHerramienta(id)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    
 }

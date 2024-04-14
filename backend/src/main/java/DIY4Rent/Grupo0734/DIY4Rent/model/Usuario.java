@@ -57,6 +57,6 @@ public class Usuario {
     private Float lng;
 
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="usuario", cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="usuario", cascade = CascadeType.ALL)
     private List<Herramienta> herramienta;
 }

@@ -53,34 +53,35 @@ public class HerramientaService {
         herramientaRepository.save(savedHerramienta);
         return herramientaMapper.toHerramientaDto(savedHerramienta);
     }
-/*
-    public Herramienta updateHerramientaById(Long id, Herramienta newHerramientaData) {
-        Optional<Herramienta> oldHerramientaData = herramientaRepository.findById(id);
-        if (oldHerramientaData.isPresent()) {
-            Herramienta updatedHerramientaData = oldHerramientaData.get();
-            updatedHerramientaData.setUsuario(newHerramientaData.getUsuario());
-            updatedHerramientaData.setDisponibilidad(newHerramientaData.getDisponibilidad());
-            updatedHerramientaData.setTipo(newHerramientaData.getTipo());
-            updatedHerramientaData.setDescripcion(newHerramientaData.getDescripcion());
-            updatedHerramientaData.setPrecioDiario(newHerramientaData.getPrecioDiario());
-            // updatedHerramientaData.setFoto(newHerramientaData.getFoto());
-            updatedHerramientaData.setEstadoFisico(newHerramientaData.getEstadoFisico());
 
-            return herramientaRepository.save(updatedHerramientaData);
-        }
-        return null;
-    }
+    public HerramientaDto updateHerramientaById(Long id, HerramientaDto newHerramientaData) {
+        Optional<Herramienta> herramientaData = herramientaRepository.findById(id);
+        Herramienta herramienta = herramientaData.get();
+        herramienta.setTipo(newHerramientaData.getTipo());
+        herramienta.setDescripcion(newHerramientaData.getDescripcion());
+        herramienta.setPrecioDiario(newHerramientaData.getPrecioDiario());
+        herramienta.setEstadoFisico(newHerramientaData.getEstadoFisico());
+        herramienta.setDisponibilidad(newHerramientaData.getDisponibilidad());
 
-    public void deleteHerramientaById(Long id) {
-        herramientaRepository.deleteById(id);
+        herramientaRepository.save(herramienta);
+        return herramientaMapper.toHerramientaDto(herramienta);
     }
- */
     public List<HerramientaDto> getAllHerramientas() {
         List<HerramientaDto> herramientas = herramientaRepository.findAll().stream().map(
             herramienta -> {
                 return herramientaMapper.toHerramientaDto(herramienta);
             }).collect(Collectors.toList());
             return herramientas;
+    }
+    
+    public boolean deleteHerramienta(Long id) {
+        Optional<Herramienta> herramientaOptional = herramientaRepository.findById(id);
+        if (herramientaOptional.isPresent()) {
+            Herramienta herramienta = herramientaOptional.get();
+            herramientaRepository.delete(herramienta); 
+            return true;
+        }
+        return false;
     }
     
 }

@@ -9,7 +9,7 @@ import {
 } from "@vis.gl/react-google-maps";
 import credentials from '../helpers/credentials';
 
-function Maps(props) {
+function MapsTool(props) {
 
     const position = {lat: props.lat, lng: props.lng};
     const [open, setOpen] = useState(false);
@@ -17,7 +17,11 @@ function Maps(props) {
 
 
     return (
-        position.lat === null && position.lng === null ? <p>No has registrado tu ubicación</p> :
+        position.lat === null && position.lng === null ? 
+        
+        <>
+        <p>Ubicación no registrada por el usuario, pongáse en contacto con este para conocer más detalles</p>
+        </> :
         <APIProvider apiKey={credentials.mapsApiKey}>
             <div style={{ height: "100vh", width: "100%" }}>
                 <Map defaultZoom={15} defaultCenter={position} mapId={credentials.mapId}>
@@ -34,4 +38,4 @@ function Maps(props) {
     )
 }
 
-export default Maps
+export default MapsTool
