@@ -9,7 +9,8 @@ const About = () => {
           de herramientas de bricolaje. Nuestro propósito es transformar la forma en que las personas
           acceden a estas herramientas, ofreciendo una experiencia simple, eficiente y sostenible
           que beneficie tanto a anunciantes como a usuarios finales.
-
+      </p>
+      <p>
           Las ventajas para los propietarios de herramientas incluyen la posibilidad de generar
           ingresos adicionales con las  herramientas que no se usan con frecuencia registrando
           como anunciantes para liberar espacio de almacenamiento y conectarse con una comunidad
