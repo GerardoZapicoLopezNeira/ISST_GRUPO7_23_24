@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,7 @@ public class Herramienta {
     @Column(name = "tipo", nullable = false)
     private String tipo;
 
+    @Lob
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
     
