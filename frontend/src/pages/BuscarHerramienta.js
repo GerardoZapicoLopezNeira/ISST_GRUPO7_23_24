@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { getAuthToken, request, setAuthHeader } from '../helpers/axios_helper';
+import React, { useEffect, useState } from 'react';
+import { request } from '../helpers/axios_helper';
 import { Link } from 'react-router-dom';
-import ToolDetails from './ToolDetails';
 
-function MyTools() {
+function BuscarHerramienta() {
 
     const [tools, setTools] = useState([]);
-    const [FilteredTools, setFilteredTools] = useState([]);
+    const [precioFiltradoMin, setPrecioFiltradoMin] = useState('');
+    const [precioFiltradoMax, setPrecioFiltradoMax] = useState('');
 
-    const MyFilteredTools = () => {
-        setFilteredTools(tools.filter(item => item.title.toLowerCase().includes(FilteredTools)));
-    }
+    const [filtroTipo, setFiltroTipo] = useState('');
+
+    
     const myTools = async () => {
         request("GET", "/herramientas").then(
             (response) => {
@@ -23,57 +23,85 @@ function MyTools() {
             );
     }
 
-    useEffect(() => {
-        const herramientas = localStorage.getItem("herramientas");
+    const filtrarHerramientas = () => {
+        const herramientasFiltradas = tools.filter(herramienta => {
+            const precio = herramienta.precioDiario;
+            const min = precioFiltradoMin === '' || parseFloat(precioFiltradoMin) <= precio;
+            const max = precioFiltradoMax === '' || parseFloat(precioFiltradoMax) >= precio;
+            const contieneTipo = filtroTipo === '' || herramienta.tipo.toLowerCase().includes(filtroTipo.toLowerCase());
+
+            return min && max && contieneTipo;
+        });
+        setTools(herramientasFiltradas);
+    };
+
+    const limpiarFiltros = () => {
+        setPrecioFiltradoMin('');
+        setPrecioFiltradoMax('');
+        setFiltroTipo('');
         myTools();
-        //setTools(herramientas);
-        //setFilteredTools(herramientas);
-        
+    };
+
+    useEffect(() => {
+        myTools();
     }, []);
+
+    // Generar opciones para el desplegable de precio mínimo
+    const opcionesPrecioMin = [];
+    for (let i = 10; i <= 200; i += 10) {
+        opcionesPrecioMin.push(<option key={i} value={i}>{i}</option>);
+    }
+
+    // Generar opciones para el desplegable de precio máximo
+    const opcionesPrecioMax = [];
+    for (let i = 10; i <= 200; i += 10) {
+        opcionesPrecioMax.push(<option key={i} value={i}>{i}</option>);
+    }
 
 
     return (
         <div>
-            <h1>Busca tu herramienta deseada</h1>
-            <p>Aquí puedes ver todas las herramientas que hay publicadas en nuestro catálogo</p>
-            <label for="filtro"> Tipo de herramienta </label>
-            <select id="selector" name="filtrado" onChange={MyFilteredTools()}>
-                <option value="All">All</option>
-                {tools.map(item => (
-                    <option value={item}>{item}</option>
-                ))}
-            </select>
-            <label for="filtro"> Precio Diario </label>
-            <select id="selector" name="filtrado" onChange={MyFilteredTools()}>
-                <option value="All">All</option>
-                {tools.map(item => (
-                    <option value={item}>{item}</option>
-                ))}
-            </select>
-            <label for="filtro"> Localización </label>
-            <select id="selector" name="filtrado" onChange={MyFilteredTools()}>
-                <option value="All">All</option>
-                {tools.map(item => (
-                    <option value={item}>{item}</option>
-                ))}
-            </select>
+            <h1>Buscar tools</h1>
+            <p>Aquí puedes encontrar todas las tools disponibles:</p>
 
-            <button id="buscador">Buscar</button>
-            {tools.length > 0 ? (
-                tools.map((tool) => (
-                    <div key={tool.id}>
-                        <h3>{tool.tipo}</h3>
-                        <p>{tool.descripcion}</p>
-                        <p>{tool.precioDiario}</p>
-                        <Link to={`/tool/${tool.id}`}>Ver más detalles</Link>
-                    </div>
-                ))
-            ) : (
-                <p>¡Todavía No Existen Herramientas Publicadas!</p>
-            )
-            }
+            <div>
+                <label htmlFor="min">Precio mínimo:</label>
+                <select id="min" value={precioFiltradoMin} onChange={(e) => setPrecioFiltradoMin(e.target.value)}>
+                    <option value="">Sin mínimo</option>
+                    {opcionesPrecioMin}
+
+                    
+                </select>
+            </div>
+            <div>
+                <label htmlFor="max">Precio máximo:</label>
+                <select id="max" value={precioFiltradoMax} onChange={(e) => setPrecioFiltradoMax(e.target.value)}>
+                    <option value="">Sin máximo</option>
+                    {opcionesPrecioMax}
+                </select>
+            </div>
+            <div>
+                <label htmlFor="filtroTipo">Filtrar por tipo:</label>
+                <input type="text" id="filtroTipo" value={filtroTipo} onChange={(e) => setFiltroTipo(e.target.value)} />
+            </div>
+
+            
+            <button onClick={filtrarHerramientas}>Filtrar</button>
+            <button onClick={limpiarFiltros}>Limpiar filtros</button>
+
+
+            <ul>
+                {tools.map(herramienta => (
+                    <li key={herramienta.id}>
+                        <h3>{herramienta.tipo}</h3>
+                        <p>{herramienta.descripcion}</p>
+                        <p>Precio Diario: {herramienta.precioDiario}</p>
+                        <Link to={`/tool/${herramienta.id}`}>Ver detalles</Link>
+                    </li>
+                ))}
+            </ul>
         </div>
-    )
+    );
 }
 
-export default MyTools
+export default BuscarHerramienta;

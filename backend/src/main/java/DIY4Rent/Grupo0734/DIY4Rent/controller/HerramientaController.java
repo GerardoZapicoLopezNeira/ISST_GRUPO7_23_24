@@ -92,10 +92,14 @@ public class HerramientaController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     
-    
+
     @GetMapping("/api/v1/herramientas/filtrarPorPrecioDiario")
-    public ResponseEntity<List<Herramienta>> filtrarPorPrecioDiario(@RequestParam("precioDiario") double precioDiario) {
-        List<Herramienta> herramientasFiltradas = herramientaService.filtrarPorPrecioDiario(precioDiario);
-        return ResponseEntity.ok(herramientasFiltradas);
+    public ResponseEntity<List<HerramientaDto>> filtrarPorPrecioDiario(
+            @RequestParam("precioDiario") double precioDiario) {
+        List<HerramientaDto> herramientasFiltradas = herramientaService.filtrarPorPrecioDiario(precioDiario);
+        if (!herramientasFiltradas.isEmpty()) {
+            return new ResponseEntity<>(herramientasFiltradas, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
