@@ -61,8 +61,8 @@ function BuscarHerramienta() {
 
     return (
         <div>
-            <h1>Buscar tools</h1>
-            <p>Aquí puedes encontrar todas las tools disponibles:</p>
+            <h1>Buscar herramientas</h1>
+            <p>Aquí puedes encontrar todas las herramientas disponibles:</p>
 
             <div>
                 <label htmlFor="min">Precio mínimo:</label>
