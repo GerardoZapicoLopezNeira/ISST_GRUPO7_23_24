@@ -92,7 +92,7 @@ function BuscarHerramienta() {
 
             <ul>
                 {tools.map(herramienta => (
-                    <li key={herramienta.id}>
+                    <li key={herramienta.id} >
                         <h3>{herramienta.tipo}</h3>
                         <p>{herramienta.descripcion}</p>
                         <p>Precio Diario: {herramienta.precioDiario}</p>

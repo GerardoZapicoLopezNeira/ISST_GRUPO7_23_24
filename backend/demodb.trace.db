@@ -353,3 +353,8 @@ insert into herramienta (descripcion,disponibilidad,estado_fisico,precio_diario,
 org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "DESCRIPCION CHARACTER VARYING(255)": "U&'3 funciones en una sola m\\00e1quina. Potente motor 1.000 W.  Transmisi\\00f3n ... (399)"
 Value too long for column "DESCRIPCION CHARACTER VARYING(255)": "U&'3 funciones en una sola m\\00e1quina. Potente motor 1.000 W.  Transmisi\\00f3n ... (399)"; SQL statement:
 insert into herramienta (descripcion,disponibilidad,estado_fisico,precio_diario,tipo,usuario_id,id) values (?,?,?,?,?,?,default) [22001-224]
+2024-05-01 08:42:00.834858+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM USUARIO \000d\000a[*]SELECT * FROM HERRAMIENTA"
+Syntax error in SQL statement "SELECT * FROM USUARIO \000d\000a[*]SELECT * FROM HERRAMIENTA"; SQL statement:
+SELECT * FROM USUARIO 
+SELECT * FROM HERRAMIENTA [42000-224]

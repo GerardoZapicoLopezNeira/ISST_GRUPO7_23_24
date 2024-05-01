@@ -77,7 +77,7 @@ function EditTool() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="descripcion">Descripción</label>
-                        <input
+                        <textarea
                             type="text"
                             className="form-control"
                             id="descripcion"
@@ -85,6 +85,8 @@ function EditTool() {
                             value={formData.descripcion}
                             onChange={handleChange}
                             required
+                            rows={10}
+                            cols={50}
                         />
                     </div>
                     <div className="form-group">
