@@ -60,7 +60,7 @@ function PublishTool() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="descripcion">Descripción</label>
-                        <input
+                        <textarea
                             type="text"
                             className="form-control"
                             id="descripcion"
@@ -68,6 +68,8 @@ function PublishTool() {
                             value={infoTool.descripcion}
                             onChange={handleChange}
                             required
+                            rows={10}
+                            cols={50}
                         />
                     </div>
                     <div className="form-group">
