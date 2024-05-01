@@ -59,3 +59,5 @@ build/
 ### ENV files ###
 .env
 
+/backend/demodb.mv.db
+/backend/demodb.trace.db
