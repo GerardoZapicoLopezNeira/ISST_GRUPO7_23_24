@@ -13,6 +13,8 @@ import PublishTool from './pages/PublishTool';
 import ToolDetails from './pages/ToolDetails';
 import EditTool from './pages/EditTool';
 import EditUser from './pages/EditUser';
+import BuscarHerramienta from './pages/BuscarHerramienta';
+
 import './App.css';
 import { getAuthToken, request, setAuthHeader } from './helpers/axios_helper';
 
@@ -77,11 +79,6 @@ function App() {
               <li className="menu-item">
                 <Link to="/">Inicio</Link>
               </li>
-              {/*            
-              <li className="menu-item">
-                <Link to="/search">Busca herramientas</Link>
-              </li>
-*/}
               {getAuthToken() !== null &&
                 <li className="menu-item">
                   <Link to="/user">Mi cuenta</Link>
@@ -92,6 +89,9 @@ function App() {
               </li>
               <li className="menu-item">
                 <Link to="/contact">Contacto</Link>
+              </li>
+              <li className="menu-item">
+                <Link to="/BuscarHerramienta">Buscar Herramienta</Link>
               </li>
               {getAuthToken() === null &&
                 <li className="menu-item">
@@ -113,16 +113,14 @@ function App() {
                   <button className="logout" onClick={logout}>Cerrar sesión</button>
                 </li>
               }
-
-
-
-
+              
             </ul>
           </div>
         </nav>
         <div className="content">
           <Routes>
             <Route path="/" element={<Home/>} />
+            <Route path="/BuscarHerramienta" element={<BuscarHerramienta />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             {/*<Route path="/search" element={<SearchTools />} />*/}
@@ -134,6 +132,7 @@ function App() {
               <Route path="/user" element={<User />} />}
             {getAuthToken() !== null &&
               <Route path="/mytools" element={<Tools />} />}
+            
             {getAuthToken() !== null &&
               <Route path="/mytools/publish" element={<PublishTool />} />}
             <Route path="/tool/:id" element={<ToolDetails />} />

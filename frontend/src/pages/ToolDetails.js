@@ -1,12 +1,12 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom'; // Importa useNavigate
 import { request } from '../helpers/axios_helper';
 import MapsTool from './MapsTool';
 
 function ToolDetails() {
-  const { id } = useParams(); // Obteniendo el ID de la ruta
+  const { id } = useParams();
   const [tool, setTool] = useState({});
+  const navigate = useNavigate(); // Usa useNavigate para la navegación
 
   useEffect(() => {
     request('GET', `/herramientas/${id}`)
@@ -17,11 +17,15 @@ function ToolDetails() {
       .catch((error) => {
         console.log('Error:', error);
       });
-  }
-  , [id]);
+  }, [id]);
 
   return (
     <div>
+      <div>
+        <button onClick={() => navigate(-1)}>Volver</button>
+      </div>
+      
+
       <h1>Detalles de la herramienta</h1>
       <p>Disponibilidad: {tool.disponibilidad ? 'Disponible' : 'No disponible'}</p>
       <p>Tipo: {tool.tipo}</p>
