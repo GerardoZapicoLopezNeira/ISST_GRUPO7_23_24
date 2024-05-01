@@ -10,6 +10,8 @@ function PublishTool() {
         precioDiario: '',
         estadoFisico: ''
     });
+    const [fotoToUpload, setFotoToUpload] = useState();
+
     const handleChange = (event) => {
         if (event.target.name === "foto") {
             setInfoTool({ ...infoTool, [event.target.name]: event.target.files[0] });
@@ -23,12 +25,29 @@ function PublishTool() {
         console.log(infoTool);
     };
 
+    const handleFoto = (event) => {
+        setFotoToUpload(event.target.files[0]);
+    };
+
+    const publishFoto = async (event, foto, toolId) => {
+        event.preventDefault();
+        request("POST", "/herramientas" + toolId + "/foto", foto).then(
+            (response)=> {
+
+            }
+        ).catch(
+            (error)=> {
+                console.log(error);
+            }
+        );
+    }
+
     const publishTool = async (event, infoTool) => {
         event.preventDefault();
-        console.log(infoTool);
         request("POST", "/users/" + localStorage.getItem("userId") + "/herramientas", infoTool).then(
             (response) => {
                 console.log(response.data);
+                //publishFoto(event, fotoToUpload, response.data.id)
                 window.location.href = "/mytools";
             }).catch(
                 (error) => {
@@ -60,7 +79,7 @@ function PublishTool() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="descripcion">Descripción</label>
-                        <input
+                        <textarea
                             type="text"
                             className="form-control"
                             id="descripcion"
@@ -68,6 +87,8 @@ function PublishTool() {
                             value={infoTool.descripcion}
                             onChange={handleChange}
                             required
+                            rows={10}
+                            cols={50}
                         />
                     </div>
                     <div className="form-group">
@@ -101,7 +122,7 @@ function PublishTool() {
                             <option value="Regular">Regular</option>
                         </select>
                     </div>
-                 {/*   <div className="form-group">
+                    <div className="form-group">
                         <label htmlFor="foto">Foto</label>
                         <input
                             type="file"
@@ -109,10 +130,10 @@ function PublishTool() {
                             id="foto"
                             name="foto"
                             accept="image/*"
-                            onChange={handleChange}
+                            onChange={handleFoto}
                             required
                         />
-    </div> */}
+                    </div>
 
                     <button type="submit" className="btn btn-primary">
                         Publicar

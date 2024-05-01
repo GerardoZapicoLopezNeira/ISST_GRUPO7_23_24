@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -21,10 +22,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Herramienta {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     @Column(name = "disponibilidad", nullable = false)
     private Boolean disponibilidad;
@@ -32,14 +33,15 @@ public class Herramienta {
     @Column(name = "tipo", nullable = false)
     private String tipo;
 
+    
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
     
     @Column(name = "precio_diario") 
     private Double precioDiario;
     
-    // @Column(name = "foto")
-    // private byte[] foto;
+    //@Column(name = "foto")
+    //private String foto;
 
     @Column(name = "estado_fisico", nullable = false)
     private String estadoFisico;

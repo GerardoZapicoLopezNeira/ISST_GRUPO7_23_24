@@ -10,6 +10,10 @@ body {
   flex-direction: column;
 }
 
+ul {
+  list-style-type: none;
+}
+
 /* Navigation bar styles */
 /* CSS for Navbar */
 .navbar {
@@ -109,7 +113,7 @@ body {
 }
 
 .search-tools ul {
-  list-style: none;
+  list-style-type: none;
   margin: 0;
   padding: 0;
 }
