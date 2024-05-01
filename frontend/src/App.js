@@ -79,11 +79,6 @@ function App() {
               <li className="menu-item">
                 <Link to="/">Inicio</Link>
               </li>
-              {/*            
-              <li className="menu-item">
-                <Link to="/search">Busca herramientas</Link>
-              </li>
-*/}
               {getAuthToken() !== null &&
                 <li className="menu-item">
                   <Link to="/user">Mi cuenta</Link>
@@ -128,7 +123,6 @@ function App() {
             <Route path="/BuscarHerramienta" element={<BuscarHerramienta />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            {/*<Route path="/BuscarHerramienta" element={<BuscarHerramienta />} />*/}
             {/*<Route path="/search" element={<SearchTools />} />*/}
             {getAuthToken() === null &&
               <Route path="/login" element={<Login onLogin={onLogin} found={userNotFound} />} />}
