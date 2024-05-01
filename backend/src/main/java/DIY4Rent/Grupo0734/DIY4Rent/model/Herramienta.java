@@ -33,7 +33,7 @@ public class Herramienta {
     @Column(name = "tipo", nullable = false)
     private String tipo;
 
-    @Lob
+    
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
     
