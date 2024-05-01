@@ -38,8 +38,8 @@ public class Herramienta {
     @Column(name = "precio_diario") 
     private Double precioDiario;
     
-    @Column(name = "foto")
-    private String foto;
+    //@Column(name = "foto")
+    //private String foto;
 
     @Column(name = "estado_fisico", nullable = false)
     private String estadoFisico;
