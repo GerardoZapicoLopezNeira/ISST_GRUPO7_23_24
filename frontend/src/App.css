@@ -258,3 +258,17 @@ ul {
 .logout:hover {
   background-color: #da1e0b; /* Slightly darker hover effect */
 }
+
+.imagenHerramienta {
+  width: 100px;
+  height: 100px;
+}
+
+.herramienta-search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem; /* Padding for content area */
+
+}

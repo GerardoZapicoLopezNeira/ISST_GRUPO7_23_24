@@ -22,5 +22,6 @@ CREATE TABLE herramienta (
     tipo VARCHAR(100) NOT NULL,
     descripcion TEXT NOT NULL,
     precio_diario DECIMAL(10, 2),
-    estado_fisico VARCHAR(100) NOT NULL
+    estado_fisico VARCHAR(100) NOT NULL,
+    foto VARCHAR(255)
 );

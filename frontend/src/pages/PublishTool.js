@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { getAuthToken, request, setAuthHeader } from '../helpers/axios_helper';
+import React, { useState } from 'react'
+import { request, uploadFile } from '../helpers/axios_helper';
 
 function PublishTool() {
 
@@ -13,9 +13,7 @@ function PublishTool() {
     const [fotoToUpload, setFotoToUpload] = useState();
 
     const handleChange = (event) => {
-        if (event.target.name === "foto") {
-            setInfoTool({ ...infoTool, [event.target.name]: event.target.files[0] });
-        } else if (event.target.name === "disponibilidad" && event.target.value === "Disponible") {
+        if (event.target.name === "disponibilidad" && event.target.value === "Disponible") {
             setInfoTool({ ...infoTool, [event.target.name]: "true" });
         } else if (event.target.name === "disponibilidad" && event.target.value === "No disponible") {
             setInfoTool({ ...infoTool, [event.target.name]: "false" });
@@ -26,35 +24,31 @@ function PublishTool() {
     };
 
     const handleFoto = (event) => {
+        console.log(event.target.files[0]);
         setFotoToUpload(event.target.files[0]);
     };
 
-    const publishFoto = async (event, foto, toolId) => {
-        event.preventDefault();
-        request("POST", "/herramientas" + toolId + "/foto", foto).then(
-            (response)=> {
-
-            }
-        ).catch(
-            (error)=> {
-                console.log(error);
-            }
-        );
-    }
-
     const publishTool = async (event, infoTool) => {
         event.preventDefault();
-        request("POST", "/users/" + localStorage.getItem("userId") + "/herramientas", infoTool).then(
-            (response) => {
-                console.log(response.data);
-                //publishFoto(event, fotoToUpload, response.data.id)
+    
+        if (fotoToUpload) {
+            try {
+                // Photo upload successful, proceed with tool info submission
+                const infoResponse = await request("POST", "/users/" + localStorage.getItem("userId") + "/herramientas", infoTool);
+                const fotoResponse = await uploadFile("POST", "/herramientas/" + infoResponse.data.id + "/foto", fotoToUpload);
+
+                console.log(fotoResponse.data);
+                console.log(infoResponse.data);
                 window.location.href = "/mytools";
-            }).catch(
-                (error) => {
-                    console.log(error);
-                }
-            );
-    }
+            } catch (error) {
+                console.error("Error uploading file:", error);
+            }
+        } else {
+            // Handle case if no photo is uploaded (optional: prompt user)
+            console.warn("No photo selected for upload");
+        }
+    };
+    
 
 
     return (

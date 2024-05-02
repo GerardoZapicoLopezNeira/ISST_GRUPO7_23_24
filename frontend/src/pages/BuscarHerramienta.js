@@ -10,7 +10,7 @@ function BuscarHerramienta() {
 
     const [filtroTipo, setFiltroTipo] = useState('');
 
-    
+
     const myTools = async () => {
         request("GET", "/herramientas").then(
             (response) => {
@@ -20,7 +20,7 @@ function BuscarHerramienta() {
                 (error) => {
                     console.log(error);
                 }
-            );
+            );  
     }
 
     const filtrarHerramientas = () => {
@@ -36,8 +36,8 @@ function BuscarHerramienta() {
     };
 
     const limpiarFiltros = () => {
-        setPrecioFiltradoMin('');
-        setPrecioFiltradoMax('');
+        setPrecioFiltradoMin(0);
+        setPrecioFiltradoMax(0);
         setFiltroTipo('');
         myTools();
     };
@@ -48,13 +48,13 @@ function BuscarHerramienta() {
 
     // Generar opciones para el desplegable de precio mínimo
     const opcionesPrecioMin = [];
-    for (let i = 10; i <= 200; i += 10) {
+    for (let i = 0; i <= 200; i += 10) {
         opcionesPrecioMin.push(<option key={i} value={i}>{i}</option>);
     }
 
     // Generar opciones para el desplegable de precio máximo
     const opcionesPrecioMax = [];
-    for (let i = 10; i <= 200; i += 10) {
+    for (let i = 0; i <= 200; i += 10) {
         opcionesPrecioMax.push(<option key={i} value={i}>{i}</option>);
     }
 
@@ -67,16 +67,12 @@ function BuscarHerramienta() {
             <div>
                 <label htmlFor="min">Precio mínimo:</label>
                 <select id="min" value={precioFiltradoMin} onChange={(e) => setPrecioFiltradoMin(e.target.value)}>
-                    <option value="">Sin mínimo</option>
                     {opcionesPrecioMin}
-
-                    
                 </select>
             </div>
             <div>
                 <label htmlFor="max">Precio máximo:</label>
                 <select id="max" value={precioFiltradoMax} onChange={(e) => setPrecioFiltradoMax(e.target.value)}>
-                    <option value="">Sin máximo</option>
                     {opcionesPrecioMax}
                 </select>
             </div>
@@ -85,21 +81,29 @@ function BuscarHerramienta() {
                 <input type="text" id="filtroTipo" value={filtroTipo} onChange={(e) => setFiltroTipo(e.target.value)} />
             </div>
 
-            
+
             <button onClick={filtrarHerramientas}>Filtrar</button>
             <button onClick={limpiarFiltros}>Limpiar filtros</button>
 
 
-            <ul>
-                {tools.map(herramienta => (
-                    <li key={herramienta.id} >
-                        <h3>{herramienta.tipo}</h3>
-                        <p>{herramienta.descripcion}</p>
-                        <p>Precio Diario: {herramienta.precioDiario}</p>
-                        <Link to={`/tool/${herramienta.id}`}>Ver detalles</Link>
-                    </li>
-                ))}
-            </ul>
+            {tools.length > 0 && (
+                <ul className="herramienta-search">
+
+                    {
+                        tools.map(herramienta => (
+                            <li key={herramienta.id} >
+                                <h3>{herramienta.tipo}</h3>
+                                <p>{herramienta.descripcion}</p>
+                                <p>Precio Diario: {herramienta.precioDiario}</p>
+                                <img className="imagenHerramienta" src={"http://localhost:9090/api/v1/herramientas/"+herramienta.id+"/foto"} alt="foto"/>
+                                <Link to={`/tool/${herramienta.id}`}>Ver detalles</Link>
+                            </li>
+                        ))
+                    }
+                </ul>
+
+            )}
+
         </div>
     );
 }

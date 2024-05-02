@@ -33,15 +33,15 @@ public class Herramienta {
     @Column(name = "tipo", nullable = false)
     private String tipo;
 
-    
+    @Lob
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
     
     @Column(name = "precio_diario") 
     private Double precioDiario;
     
-    //@Column(name = "foto")
-    //private String foto;
+    @Column(name = "foto")
+    private String foto;
 
     @Column(name = "estado_fisico", nullable = false)
     private String estadoFisico;
