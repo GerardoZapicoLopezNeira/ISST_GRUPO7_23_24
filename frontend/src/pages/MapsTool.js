@@ -19,9 +19,9 @@ function MapsTool(props) {
     return (
         position.lat === null && position.lng === null ? 
         
-        <>
+    
         <p>Ubicación no registrada por el usuario, pongáse en contacto con este para conocer más detalles</p>
-        </> :
+        :
         <APIProvider apiKey={credentials.mapsApiKey}>
             <div style={{ height: "100vh", width: "100%" }}>
                 <Map defaultZoom={15} defaultCenter={position} mapId={credentials.mapId}>
