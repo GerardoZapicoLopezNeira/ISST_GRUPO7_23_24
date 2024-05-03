@@ -5,11 +5,9 @@ import { Link } from 'react-router-dom';
 function BuscarHerramienta() {
 
     const [tools, setTools] = useState([]);
-    const [precioFiltradoMin, setPrecioFiltradoMin] = useState('');
-    const [precioFiltradoMax, setPrecioFiltradoMax] = useState('');
 
-    const [filtroTipo, setFiltroTipo] = useState('');
-
+    const [precioMin, setPrecioMin] = useState('');
+    const [precioMax, setPrecioMax] = useState('');
     
     const myTools = async () => {
         request("GET", "/herramientas").then(
@@ -23,72 +21,34 @@ function BuscarHerramienta() {
             );
     }
 
-    const filtrarHerramientas = () => {
-        const herramientasFiltradas = tools.filter(herramienta => {
-            const precio = herramienta.precioDiario;
-            const min = precioFiltradoMin === '' || parseFloat(precioFiltradoMin) <= precio;
-            const max = precioFiltradoMax === '' || parseFloat(precioFiltradoMax) >= precio;
-            const contieneTipo = filtroTipo === '' || herramienta.tipo.toLowerCase().includes(filtroTipo.toLowerCase());
-
-            return min && max && contieneTipo;
-        });
-        setTools(herramientasFiltradas);
-    };
-
-    const limpiarFiltros = () => {
-        setPrecioFiltradoMin('');
-        setPrecioFiltradoMax('');
-        setFiltroTipo('');
-        myTools();
-    };
-
     useEffect(() => {
         myTools();
     }, []);
 
-    // Generar opciones para el desplegable de precio mínimo
-    const opcionesPrecioMin = [];
-    for (let i = 10; i <= 200; i += 10) {
-        opcionesPrecioMin.push(<option key={i} value={i}>{i}</option>);
+    const handleFilterSubmit = async (e) => {
+        e.preventDefault();
+        request("GET", `/herramientas?precioMin=${precioMin}&precioMax=${precioMax}`).then(
+            (response) => {
+                setTools(response.data);
+            }).catch(
+                (error) => {
+                    console.log(error);
+                }
+            );
     }
-
-    // Generar opciones para el desplegable de precio máximo
-    const opcionesPrecioMax = [];
-    for (let i = 10; i <= 200; i += 10) {
-        opcionesPrecioMax.push(<option key={i} value={i}>{i}</option>);
-    }
-
 
     return (
         <div>
             <h1>Buscar herramientas</h1>
             <p>Aquí puedes encontrar todas las herramientas disponibles:</p>
 
-            <div>
-                <label htmlFor="min">Precio mínimo:</label>
-                <select id="min" value={precioFiltradoMin} onChange={(e) => setPrecioFiltradoMin(e.target.value)}>
-                    <option value="">Sin mínimo</option>
-                    {opcionesPrecioMin}
-
-                    
-                </select>
-            </div>
-            <div>
-                <label htmlFor="max">Precio máximo:</label>
-                <select id="max" value={precioFiltradoMax} onChange={(e) => setPrecioFiltradoMax(e.target.value)}>
-                    <option value="">Sin máximo</option>
-                    {opcionesPrecioMax}
-                </select>
-            </div>
-            <div>
-                <label htmlFor="filtroTipo">Filtrar por tipo:</label>
-                <input type="text" id="filtroTipo" value={filtroTipo} onChange={(e) => setFiltroTipo(e.target.value)} />
-            </div>
-
-            
-            <button onClick={filtrarHerramientas}>Filtrar</button>
-            <button onClick={limpiarFiltros}>Limpiar filtros</button>
-
+            <form onSubmit={handleFilterSubmit}>
+                <label htmlFor="precioMin">Precio Mínimo:</label>
+                <input type="number" id="precioMin" value={precioMin} onChange={(e) => setPrecioMin(e.target.value)} />
+                <label htmlFor="precioMax">Precio Máximo:</label>
+                <input type="number" id="precioMax" value={precioMax} onChange={(e) => setPrecioMax(e.target.value)} />
+                <button type="submit">Aplicar filtro</button>
+            </form>
 
             <ul>
                 {tools.map(herramienta => (

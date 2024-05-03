@@ -67,8 +67,13 @@ public class HerramientaController {
     }
 
     @GetMapping("/api/v1/herramientas")
-    public ResponseEntity<List<HerramientaDto>> getAllHerramientas() {
-        List<HerramientaDto> herramientaList = herramientaService.getAllHerramientas();
+    public ResponseEntity<List<HerramientaDto>> getAllHerramientas(@RequestParam(required = false) Double precioMin, @RequestParam(required = false) Double precioMax) {
+        List<HerramientaDto> herramientaList;
+        if (precioMin != null && precioMax != null) {
+            herramientaList = herramientaService.getHerramientasByPrecioRange(precioMin, precioMax);
+        } else {
+            herramientaList = herramientaService.getAllHerramientas();
+        }
         if (herramientaList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -92,14 +97,4 @@ public class HerramientaController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     
-
-    @GetMapping("/api/v1/herramientas/filtrarPorPrecioDiario")
-    public ResponseEntity<List<HerramientaDto>> filtrarPorPrecioDiario(
-            @RequestParam("precioDiario") double precioDiario) {
-        List<HerramientaDto> herramientasFiltradas = herramientaService.filtrarPorPrecioDiario(precioDiario);
-        if (!herramientasFiltradas.isEmpty()) {
-            return new ResponseEntity<>(herramientasFiltradas, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
 }

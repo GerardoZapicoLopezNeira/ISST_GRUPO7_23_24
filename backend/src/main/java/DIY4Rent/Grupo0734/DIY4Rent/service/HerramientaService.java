@@ -84,7 +84,11 @@ public class HerramientaService {
         return false;
     }
     
-    public List<HerramientaDto> filtrarPorPrecioDiario(double precioDiario) {
-        return herramientaRepository.findByPrecioDiarioLessThan(precioDiario);
+    public List<HerramientaDto> getHerramientasByPrecioRange(Double precioMin, Double precioMax) {
+        List<HerramientaDto> herramientas = herramientaRepository.findByPrecioDiarioBetween(precioMin, precioMax)
+                                                               .stream()
+                                                               .map(herramientaMapper::toHerramientaDto)
+                                                               .collect(Collectors.toList());
+        return herramientas;
     }
 }
