@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { request } from '../helpers/axios_helper';
 import { Link } from 'react-router-dom';
+import Footer from './Footer';
 
 const Home = () => {
 
@@ -20,10 +21,22 @@ const Home = () => {
   }, []);
    
   return (
-    <div className='home'>
-      <h2>Bienvenido a DIY4Rent</h2>
-      <h3>¡Encuentra todas las herramientas que necesitas para tu proyecto!</h3>
-      <p>Aquí puedes buscar de entre todas las herramientas publicadas en nuestra plataforma</p>
+    <div>
+      <h2 className='bienvenido'>Cómo funciona DIY4Rent en tres pasos</h2>
+
+
+      <div className='home'>
+  
+          <p className='numero'>1. FILTRA </p>
+            <div className='difs'><p>Busca la máquina o herramienta que quieres alquilar, la disponibilidad y la zona geográfica dónde quieras.<img src="/lupa.png" className='iconsHome'/> </p></div>
+          <p className='numero'>2. ENCUENTRA</p>
+           <div className='difs'><p>Ponte en contacto con el aunciante.<img src="/manos.png" className='iconsHomes'/> </p></div>
+          <p className='numero'>3. ALQUILA</p>
+          <div className='difs'><p> Alquila la herramienta durante el tiempo acordado.<img src="/maqui.png" className='iconsHomess'/> </p></div>
+
+      </div>
+
+
       {tools.length > 0 ? (
       <ul>
         {tools.map(tool => (
@@ -36,7 +49,7 @@ const Home = () => {
           </li>
         ))}
       </ul>) : (
-        <p>Loading tools...</p>
+        <p></p>
       )  
       }
     </div>

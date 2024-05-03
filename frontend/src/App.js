@@ -15,6 +15,7 @@ import EditTool from './pages/EditTool';
 import EditUser from './pages/EditUser';
 import './App.css';
 import { getAuthToken, request, setAuthHeader } from './helpers/axios_helper';
+import Footer from './pages/Footer';
 
 function App() {
 
@@ -72,7 +73,9 @@ function App() {
       <div className="app">
         <nav className="navbar">
           <div className="container">
-            <h1 className="logo">DIY4Rent</h1>
+          <div>
+          <a href="/" className="logo">
+          <img src="/logo.png" className='logo'/></a></div>
             <ul className="menu">
               <li className="menu-item">
                 <Link to="/">Inicio</Link>
@@ -143,7 +146,9 @@ function App() {
           </Routes>
         </div>
       </div>
-    </Router>
+      <Footer/>
+      </Router>
+
   );
 }
 
