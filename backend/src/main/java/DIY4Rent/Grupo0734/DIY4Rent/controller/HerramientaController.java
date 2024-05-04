@@ -67,9 +67,16 @@ public class HerramientaController {
     }
 
     @GetMapping("/api/v1/herramientas")
-    public ResponseEntity<List<HerramientaDto>> getAllHerramientas(@RequestParam(required = false) Double precioMin, @RequestParam(required = false) Double precioMax) {
+    public ResponseEntity<List<HerramientaDto>> getAllHerramientas(
+            @RequestParam(required = false) Double precioMin,
+            @RequestParam(required = false) Double precioMax,
+            @RequestParam(required = false) String filtro) {
         List<HerramientaDto> herramientaList;
-        if (precioMin != null && precioMax != null) {
+        if (filtro != null && !filtro.isEmpty() && precioMin != null && precioMax != null) {
+            herramientaList = herramientaService.getHerramientasByFiltroYPrecio(filtro, precioMin, precioMax);
+        } else if (filtro != null && !filtro.isEmpty()) {
+            herramientaList = herramientaService.getHerramientasByFiltro(filtro);
+        } else if (precioMin != null && precioMax != null) {
             herramientaList = herramientaService.getHerramientasByPrecioRange(precioMin, precioMax);
         } else {
             herramientaList = herramientaService.getAllHerramientas();
@@ -79,6 +86,7 @@ public class HerramientaController {
         }
         return new ResponseEntity<>(herramientaList, HttpStatus.OK);
     }
+
 
    @PutMapping("/api/v1/herramientas/{id}")
     public ResponseEntity<HerramientaDto> updateHerramientaById(@PathVariable Long id, @RequestBody HerramientaDto herramientaDto) {
