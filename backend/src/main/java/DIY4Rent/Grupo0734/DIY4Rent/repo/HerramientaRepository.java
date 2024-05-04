@@ -11,7 +11,6 @@ import DIY4Rent.Grupo0734.DIY4Rent.model.Herramienta;
 @Repository
 public interface HerramientaRepository extends JpaRepository<Herramienta, Long> {
     List<Herramienta> findByUsuarioId(Long usuarioId);
-    List<HerramientaDto> findByPrecioDiarioLessThan(double precioDiario);
 }
 
 

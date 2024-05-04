@@ -88,10 +88,6 @@ public class HerramientaService {
         }
         return false;
     }
-    
-    public List<HerramientaDto> filtrarPorPrecioDiario(double precioDiario) {
-        return herramientaRepository.findByPrecioDiarioLessThan(precioDiario);
-    }
 
     public void uploadImage(Long id, String imageUrl) {
         Optional<Herramienta> herramientaOptional = herramientaRepository.findById(id);

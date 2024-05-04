@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import DIY4Rent.Grupo0734.DIY4Rent.mapper.UserMapper;
 import DIY4Rent.Grupo0734.DIY4Rent.model.Usuario;
 import DIY4Rent.Grupo0734.DIY4Rent.repo.UsuarioRepository;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.CredentialsDto;
@@ -13,6 +12,7 @@ import DIY4Rent.Grupo0734.DIY4Rent.dto.SignUpDto;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.UserDto;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.UserInfoDto;
 import DIY4Rent.Grupo0734.DIY4Rent.exceptions.AppException;
+import DIY4Rent.Grupo0734.DIY4Rent.mapper.UserMapper;
 
 import java.nio.CharBuffer;
 import java.util.Optional;
@@ -22,8 +22,10 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
     @Autowired
     private UserMapper userMapper;
+    
     @Autowired
     private PasswordEncoder passwordEncoder;
 

@@ -17,6 +17,7 @@ import BuscarHerramienta from './pages/BuscarHerramienta';
 
 import './App.css';
 import { getAuthToken, request, setAuthHeader } from './helpers/axios_helper';
+import MisReservas from './pages/MisReservas';
 
 function App() {
 
@@ -110,20 +111,25 @@ function App() {
               }
               {getAuthToken() !== null &&
                 <li className="menu-item">
+                  <Link to="/misreservas">Mis Reservas</Link>
+                </li>
+              }
+              {getAuthToken() !== null &&
+                <li className="menu-item">
                   <button className="logout" onClick={logout}>Cerrar sesión</button>
                 </li>
               }
-              
+
+
             </ul>
           </div>
         </nav>
         <div className="content">
           <Routes>
-            <Route path="/" element={<Home/>} />
+            <Route path="/" element={<Home />} />
             <Route path="/BuscarHerramienta" element={<BuscarHerramienta />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            {/*<Route path="/search" element={<SearchTools />} />*/}
             {getAuthToken() === null &&
               <Route path="/login" element={<Login onLogin={onLogin} found={userNotFound} />} />}
             {getAuthToken() === null &&
@@ -132,9 +138,10 @@ function App() {
               <Route path="/user" element={<User />} />}
             {getAuthToken() !== null &&
               <Route path="/mytools" element={<Tools />} />}
-            
             {getAuthToken() !== null &&
               <Route path="/mytools/publish" element={<PublishTool />} />}
+            {getAuthToken() !== null &&
+              <Route path="/misreservas" element={<MisReservas />} />}
             <Route path="/tool/:id" element={<ToolDetails />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
             <Route path="/mytools/edit/:id" element={<EditTool />} />
