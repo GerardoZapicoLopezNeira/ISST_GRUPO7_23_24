@@ -23,14 +23,25 @@ const Home = () => {
   return (
     <div className='home'>
       <h2 className='about'>Cómo funciona DIY4Rent en tres sencillos pasos</h2>
+
       <h3 className='numero'>1. Busca</h3>
-      <p className='difs'>Filtra la búsqueda de tu herramienta y conoce nuestro catálogo de herramientas disponibles y acorde a tus necesidades. <img src="/lupa.png" className='iconsHome'/></p>
+      <div className='difs'>
+      <p>Filtra la búsqueda de tu herramienta y conoce nuestro catálogo de herramientas disponibles y acorde a tus necesidades.</p>
+      <img src="/lupa.png" className='iconsHome'/>
+      </div>
       <h3 className='numero'>2. Encuentra</h3>
-      <p className='difs'>Encuentra la herramienta que necesitabas, ponte en contacto con el anunciante y procede al método de reserva. <img src="/manos.png" className='iconsHomes'/></p>
+      <div className='difs'>
+      <p>Encuentra la herramienta que necesitabas, ponte en contacto con el anunciante y procede al método de reserva.</p>
+      <img src="/manos.png" className='iconsHome'/>
+      </div>
+      
       <h3 className='numero'>3. Alquila</h3>
-      <p className='difs'>Alquila durante el tiempo que lo necesites. <img src="/maqui.png" className='iconsHomess'/></p>
+      <div className='difs'>
+      <p className='difs'>Alquila durante el tiempo que lo necesites.</p>
+      <img src="/maqui.png" className='iconsHome'/>
+      </div>
       {tools.length > 0 ? (
-      <ul>
+      <ul className='herramientaInicio'>
         {tools.map(tool => (
           <li key={tool.id}>
             <h3>{tool.tipo}</h3>

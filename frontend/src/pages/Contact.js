@@ -9,7 +9,7 @@ const Contact = () => {
       <div className='buscar '>
       <p>Si tienes cualquier pregunta, no dudes en contactarnos.</p>
       <p>Email: info@diy4rent.com</p> 
-      <a href="https://www.gmail.com" className="icons"><img src="/coreo.png" className='iconsHome'/></a>
+      <a href="https://www.gmail.com" className="homeIcon"><img src="/coreo.png" className='iconsHome'/></a>
                 
       </div>
    

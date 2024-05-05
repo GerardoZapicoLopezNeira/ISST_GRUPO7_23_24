@@ -26,32 +26,32 @@ function ToolDetails() {
         console.log('Error:', error);
       });
 
-      if (getAuthToken() !== null) {
-        request('GET', '/herramientas/'+id+'/reservas').then(
-          (response) => {
-            ;
-  
-            const dates = [];
-  
-            for (let i = 0; i < response.data.length; i++) {
-              let fechaInicio = new Date(response.data[i].añoRecogida, response.data[i].mesRecogida - 1, response.data[i].diaRecogida);
-              let fechaFin = new Date(response.data[i].añoDevolucion, response.data[i].mesDevolucion - 1, response.data[i].diaDevolucion);
-              newFechasExisteReserva.push([fechaInicio, fechaFin]); // Add range to new array
-            }            
-            setFechasExisteReserva(newFechasExisteReserva);
+    if (getAuthToken() !== null) {
+      request('GET', '/herramientas/' + id + '/reservas').then(
+        (response) => {
+          ;
+
+          const dates = [];
+
+          for (let i = 0; i < response.data.length; i++) {
+            let fechaInicio = new Date(response.data[i].añoRecogida, response.data[i].mesRecogida - 1, response.data[i].diaRecogida);
+            let fechaFin = new Date(response.data[i].añoDevolucion, response.data[i].mesDevolucion - 1, response.data[i].diaDevolucion);
+            newFechasExisteReserva.push([fechaInicio, fechaFin]); // Add range to new array
           }
-        ).catch(
-          (error) => {
-            console.log(error);
-          }
-        );
-      }  
-  
+          setFechasExisteReserva(newFechasExisteReserva);
+        }
+      ).catch(
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+
   }, [id]);
 
   const hacerReserva = () => {
 
-    request('POST', '/reservas/'+ sessionStorage.getItem("userId") + '/' + tool.id, reserva).then(
+    request('POST', '/reservas/' + sessionStorage.getItem("userId") + '/' + tool.id, reserva).then(
       (response) => {
 
         ;
@@ -82,7 +82,7 @@ function ToolDetails() {
       const daysInStartMonth = new Date(range[0].getFullYear(), range[0].getMonth() + 1, 0).getDate();
       days = daysInStartMonth - range[0].getDate() + range[1].getDate();
     }
-  
+
     setImporte(days * tool.precioDiario);
     let importeReserva = days * tool.precioDiario;
     setReserva({
@@ -95,30 +95,30 @@ function ToolDetails() {
       importe: importeReserva,
       estado: "Pendiente"
     })
-    
+
     console.log(reserva);
   }
 
 
 
   function getDateRange(dateRanges) {
-    
+
     // Ensure valid input data type
     if (!Array.isArray(dateRanges)) {
       throw new TypeError('Input must be an array of arrays');
     }
-  
+
     const dates = [];
     for (const range of dateRanges) {
       // Ensure valid Date objects for start and end dates
       const startDate = new Date(range[0]);
       const endDate = new Date(range[1]);
-  
+
       // Handle invalid dates
       if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
         continue; // Skip invalid ranges
       }
-  
+
       let currentDate = startDate;
       while (currentDate <= endDate) {
         dates.push(new Date(currentDate));
@@ -127,31 +127,33 @@ function ToolDetails() {
     }
     return dates;
   }
-  
+
 
   return (
-    <div>
-      <div>
-        <button onClick={() => navigate(-1)}>Volver</button>
-      </div>
-
+    <div className='herramientaDetalle'>
 
       <h2 className='about'>Detalles de la herramienta</h2>
-      <p>Disponibilidad: {tool.disponibilidad ? 'Disponible' : 'No disponible'}</p>
-      <p>Tipo: {tool.tipo}</p>
-      <p>Descripción: {tool.descripcion}</p>
-      <p>Precio Diario: {tool.precioDiario} euros</p>
-      <p>Estado Físico: {tool.estadoFisico}</p>
-      <img className="imagenHerramienta" src={"http://localhost:9090/api/v1/herramientas/"+tool.id+"/foto"} alt="foto" />
+      <div className='myTools'>
+        <p>Tipo: {tool.tipo}</p>
+        <p>Descripción: {tool.descripcion}</p>
+        <p>Precio Diario: {tool.precioDiario} euros</p>
+        <p>Estado Físico: {tool.estadoFisico}</p>
+        <img className="imagenHerramienta" src={"http://localhost:9090/api/v1/herramientas/" + tool.id + "/foto"} alt="foto" />
+      </div>
+
       {tool.usuario && (
         <>
-          <h2>Propietario</h2>
-          <p>Nombre: {tool.usuario.nombre}</p>
-          <p>DNI: {tool.usuario.dni}</p>
-          <p>Dirección: {tool.usuario.direccion}</p>
-          <p>Email: {tool.usuario.email}</p>
-          <p>Teléfono: {tool.usuario.telefono}</p>
-          {sessionStorage.getItem("userId")==tool.usuario.id ? (<p>¡No puedes reservar tu propia herramienta, bribón!</p>) : getAuthToken() !== null ? (
+          <div className='myTools'>
+            <h2>Propietario</h2>
+            <p>Nombre: {tool.usuario.nombre}</p>
+            <p>DNI: {tool.usuario.dni}</p>
+            <p>Dirección: {tool.usuario.direccion}</p>
+            <p>Email: {tool.usuario.email}</p>
+            <p>Teléfono: {tool.usuario.telefono}</p>
+          </div>
+
+<div className='datosReserva'>
+{sessionStorage.getItem("userId") == tool.usuario.id ? (<p>¡No puedes reservar tu propia herramienta, bribón!</p>) : getAuthToken() !== null ? (
             <>
               <Calendar minDate={new Date()} onChange={onChangeDates} value={value} selectRange={true} returnValue={"range"} tileDisabled={({ activeStartDate, date, view }) =>
                 getDateRange(fechasExisteReserva).some(dateRange =>
@@ -160,11 +162,14 @@ function ToolDetails() {
                   date.getDate() === dateRange.getDate()
                 )
               } />
-              <p>Importe de la reserva: {importe} euros</p>
-              <button className="btn btn-primary" onClick={hacerReserva}>Reserva</button>
             </>
           ) : (<p>Para ver la disponibilidad de la herramienta y reservarla autentícate.</p>)}
           <MapsTool lat={tool.usuario.lat} lng={tool.usuario.lng} />
+</div>
+         
+          <p>Importe de la reserva: {importe} euros</p>
+              <button className="btn btn-primary" onClick={hacerReserva}>Reserva</button>
+
         </>
       )}
     </div>

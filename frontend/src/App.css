@@ -29,11 +29,12 @@ ul {
   padding: 0px 0px;
 }
 
-.logo {
+.logo img {
   width: 160px;
   height: 120px;
-  padding-right: 0px;
-
+  margin-right: auto;
+  padding: 5px;
+  margin: 5px;
 }
 
 .menu {
@@ -94,10 +95,17 @@ ul {
 .content {
   flex: 1;
   padding: 2rem; /* Padding for content area */
+
 }
 
 .home {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 2rem; /* Padding for content area */
 }
 
 .search-tools {
@@ -268,7 +276,11 @@ ul {
 
 .footer-css {
 background-color: #a9a49c;
+display: flex;
+flex-direction: column;
+
 align-items: center;
+justify-content: center;
 }
 
 .fot{
@@ -278,6 +290,28 @@ align-items: center;
   font-size: 25px;
   color: #000000;
 }
+
+.footer-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.footer-links img {
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+}
+
 .copyright {
   color:#fff;
 }
@@ -294,8 +328,6 @@ align-items: center;
 
 
 .home {
-display: grid;
-text-align: left;
 font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 font-size: 25px;
 }
@@ -317,32 +349,26 @@ margin:0;
 }
 
 .iconsHome{
-  padding-left: 120px;
   width: 120px;
   height: 120px;
   
 }
 
-.iconsHomess{
-  padding-left: 900px;
-  width: 150px;
-  height: 150px;
-  
-}
-
-.iconsHomes{
-  padding-left: 1350px;
-  width: 150px;
-  height: 150px;
-  
-}
 
 
 .difs{
   background-color: #F2AE1C;
-  height: 130px;
-  padding-bottom: 30px;
-  padding-top: 30px;
+  height: auto;
+  padding: 20px;
+  margin: 20px;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  
+
 }
 
 .about {
@@ -393,11 +419,504 @@ margin:0;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 20px;
   font-style: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+
 .iconsHome{
-  padding-right: 100px;
   width: 120px;
   height: 120px;
   
+}
+
+.herramientaInicio {
+  list-style-type: none; /* Elimina los puntos de la lista */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  flex-wrap: wrap; /* Ajusta los elementos de la lista en varias filas */
+  padding: 20px; /* Espaciado interno */
+  background-color: #f9f9f9; /* Color de fondo */
+
+ 
+}
+
+.herramientaInicio li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 20px; /* Espaciado entre elementos de la lista */
+  border: 2px solid #ccc; /* Borde alrededor de cada elemento */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 20px; /* Espaciado interno */
+  background-color: #f9f9f9; /* Color de fondo */
+  margin-right: 20px; /* Espaciado derecho */
+  text-align: center; /* Alineación del texto */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+  width: 350px; /* Ancho del elemento */
+  height: 350px; /* Altura del elemento */
+
+
+  
+
+}
+
+.herramientaInicio h3 {
+  font-size: 20px; /* Tamaño de fuente para el título de la herramienta */
+  margin-bottom: 10px; /* Espaciado inferior para el título */
+}
+
+.herramientaInicio p {
+ 
+  margin: 0; /* Elimina el margen predeterminado de los párrafos */
+  margin-bottom: 10px; /* Espaciado inferior entre párrafos */
+
+}
+
+.herramientaInicio img {
+  max-width: 100px; /* Tamaño máximo de la imagen */
+  height: auto; /* Altura automática para mantener la proporción */
+  margin-bottom: 10px; /* Espaciado inferior para la imagen */
+}
+
+.herramientaInicio a {
+  color: #FCA218; /* Color del enlace */
+  text-decoration: none; /* Elimina el subrayado predeterminado */
+  font-weight: bold; /* Negrita */
+}
+
+.herramientaInicio a:hover {
+  text-decoration: underline; /* Subrayado al pasar el cursor sobre el enlace */
+}
+
+/* Estilos para el contenedor principal */
+.buscar-herramienta-container {
+  padding: 20px;
+}
+
+/* Estilos para el título */
+.about {
+  font-size: 24px;
+  font-weight: bold;
+  color: #FCA218;
+  margin-bottom: 20px;
+}
+
+/* Estilos para el área de búsqueda */
+.buscar {
+  margin-bottom: 20px;
+}
+
+.buscar p {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Estilos para el campo de búsqueda */
+.filtro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: max-content;
+  padding: 10px;
+  margin: 10px;
+}
+
+.filtro label {
+  color: #333;
+  margin-bottom: 10px;
+}
+.filtro input {
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: large;
+} 
+
+.filtroPrecio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  height: max-content;
+  padding: 10px;
+  margin: 10px;
+}
+
+
+/* Estilos para el slider */
+.slider {
+  margin-bottom: 20px;
+}
+
+/* Estilos para el botón de borrar filtros */
+.btn-primary {
+  background-color: #FCA218;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-primary:hover {
+  background-color: #FFD700; /* Cambia el color al pasar el cursor */
+}
+
+/* Estilos para la lista de herramientas */
+
+
+.imagenHerramienta {
+  max-width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+.herramientaBuscar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.herramientaBuscar li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 350px;
+  width: 350px;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.userData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+} 
+
+.myUser {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  padding: 20px;
+  
+}
+
+.myUserInfo {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+}
+
+
+
+.myUserInfo h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.myUserInfo p {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.myUserInfo a {
+  text-decoration: none;
+  color: #FCA218;
+  font-weight: bold;
+}
+
+.myUserInfo a:hover {
+  color: #FCA218;
+}
+
+.mapsUser {
+  width: 400px;
+  height: 400px;
+  margin: 20px;
+  border: #F2AE1C 5px solid;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.mapsUser button {
+  background-color: #FCA218;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 20px;
+} 
+
+.myTools {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 20px; /* Espaciado entre elementos de la lista */
+  border: 2px solid #ccc; /* Borde alrededor de cada elemento */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 20px; /* Espaciado interno */
+  background-color: #f9f9f9; /* Color de fondo */
+  text-align: center; /* Alineación del texto */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+  width: 350px; /* Ancho del elemento */
+  height: 350px; /* Altura del elemento */
+  margin: 10px;
+
+}
+
+
+
+.myTools h3 {
+  font-size: 20px; /* Tamaño de fuente para el título de la herramienta */
+  margin-bottom: 10px; /* Espaciado inferior para el título */
+}
+
+.myTools p {
+  margin: 0; /* Elimina el margen predeterminado de los párrafos */
+  margin-bottom: 10px; /* Espaciado inferior entre párrafos */
+}
+
+.myTools img {
+  max-width: 100px; /* Tamaño máximo de la imagen */
+  height: auto; /* Altura automática para mantener la proporción */
+  margin-bottom: 10px; /* Espaciado inferior para la imagen */
+}
+
+.myTools a {
+  color: #FCA218; /* Color del enlace */
+  text-decoration: none; /* Elimina el subrayado predeterminado */
+  font-weight: bold; /* Negrita */
+}
+
+.myTools a:hover {
+  text-decoration: underline; /* Subrayado al pasar el cursor sobre el enlace */
+}
+
+.allMyTools {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.misHerramientas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+.myTools .cancelar {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 20px;
+} 
+
+.editarHerramienta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.editTool {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  padding: 20px;
+  font-size: larger;
+}
+
+.editTool input {
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: large;
+}
+.editTool label {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.editTool .eliminar {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.herramientaDetalle {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.herramientaDetalle h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.herramientaDetalle p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.herramientaDetalle img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.herramientaDetalle .propietario {
+  margin-top: 20px;
+}
+
+.herramientaDetalle .propietario h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.herramientaDetalle .propietario p {
+  margin-bottom: 5px;
+}
+
+.herramientaDetalle .mapa {
+  margin-top: 20px;
+  height: 300px;
+  border: 1px solid #ccc;
+}
+
+.herramientaDetalle .react-calendar {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.herramientaDetalle .react-calendar .react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.herramientaDetalle .react-calendar .react-calendar__navigation button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+}
+
+.herramientaDetalle .react-calendar .react-calendar__navigation button:hover {
+  color: #000;
+}
+
+.herramientaDetalle .react-calendar .react-calendar__month-view {
+  padding: 15px;
+}
+
+.herramientaDetalle .react-calendar .react-calendar__month-view__weekday {
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.herramientaDetalle .react-calendar .react-calendar__month-view__day {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.herramientaDetalle .react-calendar .react-calendar__month-view__day--selected {
+  background-color: #FCA218;
+  color: #fff;
+}
+
+.herramientaDetalle .react-calendar .react-calendar__month-view__day--keyboard-selected {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.herramientaDetalle .react-calendar .react-calendar__tile--disabled {
+  background-color: #e8e8e8;
+  cursor: default;
+}
+
+.datosReserva {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+} 
+
+.sobreNosotros {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding: 20px;
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+
+} 
+
+.allMyReservas {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space- ;
+  padding: 20px;
+} 
+.reservas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }

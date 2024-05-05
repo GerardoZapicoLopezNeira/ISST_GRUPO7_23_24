@@ -20,35 +20,39 @@ function MyTools() {
             );
     }
 
-    
+
 
 
     useEffect(() => {
         const id_user = sessionStorage.getItem("userId");
         myTools(id_user);
-        
+
     }, []);
 
 
     return (
-        <div>
+        <div className="misHerramientas">
             <h2 className='about'>Mis herramientas</h2>
-            <p  className='buscar'>Edita tus herramientas</p>
-            {tools.length > 0 ? (
-                tools.map((tool) => (
-                    <div key={tool.id}>
-                        <h3>{tool.tipo}</h3>
-                        <p>{tool.descripcion}</p>
-                        <p>{tool.precioDiario}</p>
-                        <img className="imagenHerramienta" src={"http://localhost:9090/api/v1/herramientas/"+tool.id+"/foto"} alt="foto"/>
-                        <Link to={`/mytools/edit/${tool.id}`}>Editar detalles</Link>
-                    </div>
-                ))
-            ) : (
-                <p className='buscar'>¡Todavía no tienes herramientas publicadas!</p>
-            )
-            }
-            <Link to="/myTools/publish"><button  className="btn btn-primary">Publica aquí tu nueva herramienta</button></Link>
+            <p className='buscar'>Edita tus herramientas</p>
+            <div className="allMyTools">
+                {tools.length > 0 ? (
+                    tools.map((tool) => (
+                        <div className="myTools" key={tool.id}>
+                            <h3>{tool.tipo}</h3>
+                            <p>{tool.descripcion}</p>
+                            <p>Precio diario: {tool.precioDiario} euros</p>
+                            <img className="imagenHerramienta" src={"http://localhost:9090/api/v1/herramientas/" + tool.id + "/foto"} alt="foto" />
+                            <Link to={`/mytools/edit/${tool.id}`}>Editar detalles</Link>
+                        </div>
+                    ))
+                ) : (
+                    <p className='buscar'>¡Todavía no tienes herramientas publicadas!</p>
+                )
+                }
+
+            </div>
+            <Link to="/myTools/publish"><button className="btn btn-primary">Publica aquí tu nueva herramienta</button></Link>
+
 
         </div>
     )

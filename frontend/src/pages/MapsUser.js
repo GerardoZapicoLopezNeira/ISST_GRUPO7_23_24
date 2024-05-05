@@ -57,7 +57,7 @@ function MapsUser(props) {
             :
             <>
                         <APIProvider apiKey={credentials.mapsApiKey}>
-                <div style={{ height: "100vh", width: "100%" }}>
+                <div className='mapsUser'>
                     <Map defaultZoom={15} defaultCenter={position} mapId={credentials.mapId}>
                         <AdvancedMarker position={position} onClick={() => setOpen(true)}>
                             <Pin
@@ -67,9 +67,10 @@ function MapsUser(props) {
                             />
                         </AdvancedMarker>
                     </Map>
+                    <button onClick={getPosition}>Actualiza tu ubicación</button>
+
                 </div>
             </APIProvider>
-            <button onClick={getPosition}>Actualiza tu ubicación</button>
             </>
 
             

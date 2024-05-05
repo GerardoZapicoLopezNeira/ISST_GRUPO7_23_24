@@ -20,24 +20,30 @@ function User() {
   }, []);
 
   return (
-    <div>
+    <div className="userData">
       <h2 className='about'>Mi perfil</h2>
-      <p className='buscar'>En esta sección podrás ver tu información personal y modificarla si es necesario.</p>
-      <h2>Información personal</h2>
-      {userData ? (
-        <>
-          <p>Nombre: {userData.nombre}</p>
-          <p>DNI: {userData.dni}</p>
-          <p>Dirección: {userData.direccion}</p>
-          <p>Email: {userData.email}</p>
-          <p>Teléfono: {userData.telefono}</p>
-          <Link to={`/user/edit/${userData.id}`}>Editar usuario</Link>
-        </>
-      ) : (
-        <p className='buscar'>Cargando datos del usuario...</p>
-      )}
-      
-      <MapsUser lat={userData.lat} lng={userData.lng}/>
+      <p className='buscar'>En esta sección podrás ver tu información personal y modificarla si es necesario</p>
+      <div className='myUser'>
+        <div className='myUserInfo'>
+        <h2>Información personal</h2>
+        {userData ? (
+          <>
+            <p>Nombre: {userData.nombre}</p>
+            <p>DNI: {userData.dni}</p>
+            <p>Dirección: {userData.direccion}</p>
+            <p>Email: {userData.email}</p>
+            <p>Teléfono: {userData.telefono}</p>
+            <Link to={`/user/edit/${userData.id}`}>Editar usuario</Link>
+          </>
+        ) : (
+          <p className='buscar'>Cargando datos del usuario...</p>
+        )}
+
+        </div>
+
+        <MapsUser lat={userData.lat} lng={userData.lng} />
+      </div>
+
     </div>
   );
 }
