@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { getAuthToken, request, setAuthHeader } from '../helpers/axios_helper';
+import React, { useState } from 'react'
+import { request, uploadFile } from '../helpers/axios_helper';
 
 function PublishTool() {
 
@@ -10,10 +10,10 @@ function PublishTool() {
         precioDiario: '',
         estadoFisico: ''
     });
+    const [fotoToUpload, setFotoToUpload] = useState();
+
     const handleChange = (event) => {
-        if (event.target.name === "foto") {
-            setInfoTool({ ...infoTool, [event.target.name]: event.target.files[0] });
-        } else if (event.target.name === "disponibilidad" && event.target.value === "Disponible") {
+        if (event.target.name === "disponibilidad" && event.target.value === "Disponible") {
             setInfoTool({ ...infoTool, [event.target.name]: "true" });
         } else if (event.target.name === "disponibilidad" && event.target.value === "No disponible") {
             setInfoTool({ ...infoTool, [event.target.name]: "false" });
@@ -23,19 +23,32 @@ function PublishTool() {
         console.log(infoTool);
     };
 
+    const handleFoto = (event) => {
+        console.log(event.target.files[0]);
+        setFotoToUpload(event.target.files[0]);
+    };
+
     const publishTool = async (event, infoTool) => {
         event.preventDefault();
-        console.log(infoTool);
-        request("POST", "/users/" + localStorage.getItem("userId") + "/herramientas", infoTool).then(
-            (response) => {
-                console.log(response.data);
+    
+        if (fotoToUpload) {
+            try {
+                // Photo upload successful, proceed with tool info submission
+                const infoResponse = await request("POST", "/users/" + sessionStorage.getItem("userId") + "/herramientas", infoTool);
+                const fotoResponse = await uploadFile("POST", "/herramientas/" + infoResponse.data.id + "/foto", fotoToUpload);
+
+                console.log(fotoResponse.data);
+                console.log(infoResponse.data);
                 window.location.href = "/mytools";
-            }).catch(
-                (error) => {
-                    console.log(error);
-                }
-            );
-    }
+            } catch (error) {
+                console.error("Error uploading file:", error);
+            }
+        } else {
+            // Handle case if no photo is uploaded (optional: prompt user)
+            console.warn("No photo selected for upload");
+        }
+    };
+    
 
 
     return (
@@ -60,7 +73,7 @@ function PublishTool() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="descripcion">Descripción</label>
-                        <input
+                        <textarea
                             type="text"
                             className="form-control"
                             id="descripcion"
@@ -68,6 +81,8 @@ function PublishTool() {
                             value={infoTool.descripcion}
                             onChange={handleChange}
                             required
+                            rows={10}
+                            cols={50}
                         />
                     </div>
                     <div className="form-group">
@@ -101,7 +116,7 @@ function PublishTool() {
                             <option value="Regular">Regular</option>
                         </select>
                     </div>
-                 {/*   <div className="form-group">
+                    <div className="form-group">
                         <label htmlFor="foto">Foto</label>
                         <input
                             type="file"
@@ -109,10 +124,10 @@ function PublishTool() {
                             id="foto"
                             name="foto"
                             accept="image/*"
-                            onChange={handleChange}
+                            onChange={handleFoto}
                             required
                         />
-    </div> */}
+                    </div>
 
                     <button type="submit" className="btn btn-primary">
                         Publicar

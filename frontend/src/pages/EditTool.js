@@ -14,7 +14,7 @@ function EditTool() {
     useEffect(() => {
         request('GET', `/herramientas/${id}`)
             .then((response) => {
-                console.log(response.data);
+                ;
                 setFormData(response.data);            
             })
             .catch((error) => {
@@ -40,7 +40,7 @@ function EditTool() {
         try {
             const response = await request('PUT', `/herramientas/${id}`, formData);
             window.location.href = "/mytools";
-            console.log(response.data);
+            ;
         } catch (error) {
             console.log('Error:', error);
         }
@@ -51,7 +51,7 @@ function EditTool() {
         try {
             const response = await request('DELETE', `/herramientas/${id}`);
             window.location.href = "/mytools";
-            console.log(response.data);
+            ;
         } catch (error) {
             console.log('Error:', error);
         }
@@ -77,7 +77,7 @@ function EditTool() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="descripcion">Descripción</label>
-                        <input
+                        <textarea
                             type="text"
                             className="form-control"
                             id="descripcion"
@@ -85,6 +85,8 @@ function EditTool() {
                             value={formData.descripcion}
                             onChange={handleChange}
                             required
+                            rows={10}
+                            cols={50}
                         />
                     </div>
                     <div className="form-group">

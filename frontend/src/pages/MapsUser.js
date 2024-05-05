@@ -37,7 +37,7 @@ function MapsUser(props) {
                 navigator.geolocation.getCurrentPosition(resolve, reject, { enableHighAccuracy: true });
             });
             const { latitude, longitude } = pos.coords;
-            updatePosition(localStorage.getItem("username"), latitude, longitude);
+            updatePosition(sessionStorage.getItem("username"), latitude, longitude);
         } catch (error) {
             console.error(error.message);
             alert("No se pudo obtener tu ubicación, por favor comprueba que no tienes desactivada la geolocalización en tu navegador")

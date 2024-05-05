@@ -10,22 +10,30 @@ body {
   flex-direction: column;
 }
 
+ul {
+  list-style-type: none;
+}
+
 /* Navigation bar styles */
 /* CSS for Navbar */
 .navbar {
-  background-color: #333;
-  color: #fff;
+  background-color: #ffecc2;
+  color: #000000;
+  height: 120px;
 }
 
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 20px;
+  padding: 0px 0px;
 }
 
 .logo {
-  font-size: 1.5rem;
+  width: 160px;
+  height: 120px;
+  padding-right: 0px;
+
 }
 
 .menu {
@@ -34,11 +42,11 @@ body {
 }
 
 .menu-item {
-  margin: 0 10px;
+  margin: 0 15px;
 }
 
 .menu-item a {
-  color: #fff;
+  color: #000000;
   text-decoration: none;
 }
 
@@ -72,13 +80,14 @@ body {
 }
 
 .menu-item a {
-  text-decoration: none;
-  color: white;
+  font-size: 20px;
+  color: black;
+
   padding: 0.5rem 1rem; /* Padding for menu items */
 }
 
 .menu-item a:hover {
-  color: #61dafb;
+  color: #FCA218;
 }
 
 /* Content area styles */
@@ -109,7 +118,7 @@ body {
 }
 
 .search-tools ul {
-  list-style: none;
+  list-style-type: none;
   margin: 0;
   padding: 0;
 }
@@ -168,7 +177,7 @@ body {
 }
 
 .login-form button[type="submit"] {
-  background-color: #3498db;
+  background-color: #FCA218;
   color: #fff;
   border: none;
   border-radius: 3px;
@@ -178,13 +187,14 @@ body {
 }
 
 .login-form button[type="submit"]:hover {
-  background-color: #2980b9;
+  background-color:#FCA218;
 }
 
 .register-form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-weight: bold;
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
@@ -222,8 +232,9 @@ body {
 }
 
 .btn-primary {
-  background-color: #3498db;
+  background-color: #FCA218;
   color: #fff;
+  font-weight:bold;
   border: none;
   border-radius: 3px;
   padding: 10px 20px;
@@ -232,7 +243,7 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: #2980b9;
+  background-color:#FCA218;
 }
 
 .logout {
@@ -252,5 +263,121 @@ body {
 
 
 .logout:hover {
-  background-color: #da1e0b; /* Slightly darker hover effect */
+  background-color: #FCA218; /* Slightly darker hover effect */
+}
+
+.footer-css {
+background-color: #a9a49c;
+align-items: center;
+}
+
+.fot{
+  text-align: center;
+  padding-top: 10px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 25px;
+  color: #000000;
+}
+.copyright {
+  color:#fff;
+}
+
+.icons {
+  height: 30px;
+  width: 30px;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 5px;
+  color: #fff;
+}
+
+
+.home {
+display: grid;
+text-align: left;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+font-size: 25px;
+}
+
+.numero {
+font-size: 70px;
+color: #595b60;
+margin:0;
+}
+
+
+.bienvenido {
+  font-size: 40px; /* Cambiar el tamaño del texto a 24 píxeles (puedes ajustar el valor según sea necesario) */
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;/* Cambiar la fuente del texto */
+  font-style: bold;
+  color:#FCA218;
+  text-align: center;
+  margin: 20;
+}
+
+.iconsHome{
+  padding-left: 200px;
+  width: 180px;
+  height: 170px;
+  
+}
+
+.iconsHomess{
+  padding-left: 750px;
+  width: 180px;
+  height: 170px;
+  
+}
+
+.iconsHomes{
+  padding-left: 900px;
+  width: 200px;
+  height: 190px;
+  
+}
+
+
+.difs{
+  background-color: #FCA218;
+  height: 200px;
+  padding-bottom: 30px;
+}
+
+.about {
+  font-size: 40px; /* Cambiar el tamaño del texto a 24 píxeles (puedes ajustar el valor según sea necesario) */
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;/* Cambiar la fuente del texto */
+  font-style: bold;
+  color:#FCA218;
+  margin: 0;
+  text-align:center;
+  align-items: center;
+
+
+}
+
+
+.tabla{
+  border: white;
+  margin: 20px;
+  font-size: 20px;
+  text-align:justify;
+  padding-top: 20px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+  
+}
+
+.imagenHerramienta {
+  width: 100px;
+  height: 100px;
+}
+
+.herramienta-search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem; /* Padding for content area */
+
 }

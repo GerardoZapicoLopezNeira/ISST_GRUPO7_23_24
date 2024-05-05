@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { request } from '../helpers/axios_helper';
 import { Link } from 'react-router-dom';
+import Footer from './Footer';
 
 const Home = () => {
 
@@ -10,7 +11,7 @@ const Home = () => {
   useEffect (()=> {
     request('GET', '/herramientas')
     .then((response) => {
-      console.log(response.data);
+      ;
       setTools(response.data);
     })
     .catch((error) => {
@@ -31,6 +32,7 @@ const Home = () => {
             <h3>{tool.tipo}</h3>
             <p>Precio diario: ${tool.precioDiario}</p>
             <p>Estado Físico: {tool.estadoFisico}</p>
+            <img className='imagenHerramienta' src={`http://localhost:9090/api/v1/herramientas/${tool.id}/foto`} alt={tool.tipo} />
             <p>Propietario: {tool.usuario.nombre}</p>
             <Link to={`/tool/${tool.id}`}>Ver más detalles</Link>
           </li>

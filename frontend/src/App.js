@@ -13,8 +13,13 @@ import PublishTool from './pages/PublishTool';
 import ToolDetails from './pages/ToolDetails';
 import EditTool from './pages/EditTool';
 import EditUser from './pages/EditUser';
+import BuscarHerramienta from './pages/BuscarHerramienta';
+
 import './App.css';
 import { getAuthToken, request, setAuthHeader } from './helpers/axios_helper';
+import Footer from './pages/Footer';
+import MisReservas from './pages/MisReservas';
+import EditarReserva from './pages/EditarReserva';
 
 function App() {
 
@@ -22,7 +27,7 @@ function App() {
 
   const logout = () => {
     setAuthHeader(null);
-    localStorage.clear();
+    sessionStorage.clear();
     window.location.href = "/";
   };
 
@@ -31,14 +36,12 @@ function App() {
     request("POST", "/login", formData).then(
       (response) => {
         setAuthHeader(response.data.token);
-        localStorage.setItem("userId", response.data.id);
-        localStorage.setItem("username", response.data.username);
+        sessionStorage.setItem("userId", response.data.id);
+        sessionStorage.setItem("username", response.data.username);
         setUserNotFound(null);
         window.location.href = "/";
         if (response.data.token !== null) {
-          console.log("Login correcto");
         } else {
-          console.log("Login incorrecto");
           setAuthHeader(null);
           setUserNotFound("Usuario no encontrado. \n Por favor, inténtelo de nuevo.");
         }
@@ -56,8 +59,8 @@ function App() {
     request('POST', '/register', formData).then(
       (response) => {
         setAuthHeader(response.data.token);
-        localStorage.setItem("userId", response.data.id);
-        localStorage.setItem("username", response.data.username);
+        sessionStorage.setItem("userId", response.data.id);
+        sessionStorage.setItem("username", response.data.username);
         window.location.href = "/";
       }).catch(
         (error) => {
@@ -72,16 +75,13 @@ function App() {
       <div className="app">
         <nav className="navbar">
           <div className="container">
-            <h1 className="logo">DIY4Rent</h1>
+          <div>
+          <a href="/" className="logo">
+          <img src="/logo.png" className='logo'/></a></div>
             <ul className="menu">
               <li className="menu-item">
                 <Link to="/">Inicio</Link>
               </li>
-              {/*            
-              <li className="menu-item">
-                <Link to="/search">Busca herramientas</Link>
-              </li>
-*/}
               {getAuthToken() !== null &&
                 <li className="menu-item">
                   <Link to="/user">Mi cuenta</Link>
@@ -92,6 +92,9 @@ function App() {
               </li>
               <li className="menu-item">
                 <Link to="/contact">Contacto</Link>
+              </li>
+              <li className="menu-item">
+                <Link to="/BuscarHerramienta">Buscar Herramienta</Link>
               </li>
               {getAuthToken() === null &&
                 <li className="menu-item">
@@ -110,11 +113,14 @@ function App() {
               }
               {getAuthToken() !== null &&
                 <li className="menu-item">
+                  <Link to="/misreservas">Mis Reservas</Link>
+                </li>
+              }
+              {getAuthToken() !== null &&
+                <li className="menu-item">
                   <button className="logout" onClick={logout}>Cerrar sesión</button>
                 </li>
               }
-
-
 
 
             </ul>
@@ -122,10 +128,10 @@ function App() {
         </nav>
         <div className="content">
           <Routes>
-            <Route path="/" element={<Home/>} />
+            <Route path="/" element={<Home />} />
+            <Route path="/BuscarHerramienta" element={<BuscarHerramienta />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            {/*<Route path="/search" element={<SearchTools />} />*/}
             {getAuthToken() === null &&
               <Route path="/login" element={<Login onLogin={onLogin} found={userNotFound} />} />}
             {getAuthToken() === null &&
@@ -136,6 +142,11 @@ function App() {
               <Route path="/mytools" element={<Tools />} />}
             {getAuthToken() !== null &&
               <Route path="/mytools/publish" element={<PublishTool />} />}
+            {getAuthToken() !== null &&
+              <Route path="/misreservas" element={<MisReservas />} />}
+            {getAuthToken() !== null &&
+              <Route path="/reservas/:id" element={<EditarReserva />} />
+            }
             <Route path="/tool/:id" element={<ToolDetails />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
             <Route path="/mytools/edit/:id" element={<EditTool />} />
@@ -143,7 +154,9 @@ function App() {
           </Routes>
         </div>
       </div>
-    </Router>
+      <Footer/>
+      </Router>
+
   );
 }
 
