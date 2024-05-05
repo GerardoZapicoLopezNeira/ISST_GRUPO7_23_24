@@ -21,7 +21,7 @@ function BuscarHerramienta() {
                 (error) => {
                     console.log(error);
                 }
-            );
+            );  
     }
 
     useEffect(() => {
@@ -41,6 +41,7 @@ function BuscarHerramienta() {
     const handleSlider = (event, newValue) => {
         console.log(newValue);
         setSliderValue(newValue);
+
     }
 
 

@@ -10,6 +10,7 @@ import DIY4Rent.Grupo0734.DIY4Rent.repo.HerramientaRepository;
 import DIY4Rent.Grupo0734.DIY4Rent.repo.UsuarioRepository;
 
 import java.util.Collections;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,6 +26,9 @@ public class HerramientaService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private ImageService imageService;
 
     public List<HerramientaDto> getAllHerramientasByUsuarioId(Long usuarioId) {
          
@@ -75,10 +79,11 @@ public class HerramientaService {
             return herramientas;
     }
     
-    public boolean deleteHerramienta(Long id) {
+    public boolean deleteHerramienta(Long id) throws IOException {
         Optional<Herramienta> herramientaOptional = herramientaRepository.findById(id);
         if (herramientaOptional.isPresent()) {
             Herramienta herramienta = herramientaOptional.get();
+            imageService.deleteImage("src/main/resources/static/images", herramienta.getFoto());
             herramientaRepository.delete(herramienta); 
             return true;
         }

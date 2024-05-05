@@ -25,4 +25,19 @@ CREATE TABLE usuario (
     telefono VARCHAR(20) NOT NULL,
     latitude FLOAT,
     longitude FLOAT
+<<<<<<< HEAD
+=======
+);
+
+CREATE TABLE herramienta (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id),
+    disponibilidad BOOLEAN NOT NULL,
+    tipo VARCHAR(100) NOT NULL,
+    descripcion TEXT NOT NULL,
+    precio_diario DECIMAL(10, 2),
+    estado_fisico VARCHAR(100) NOT NULL,
+    foto VARCHAR(255)
+>>>>>>> RamaPrefinal
 );
