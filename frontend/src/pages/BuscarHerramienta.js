@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { request } from '../helpers/axios_helper';
 import { Link } from 'react-router-dom';
+import { Slider, SliderThumb } from '@mui/material';
 
 function BuscarHerramienta() {
 
     const [tools, setTools] = useState([]);
+    const [filteredTools, setFilteredTools] = useState([]);
     const [filtro, setFiltro] = useState('');
-    const [precioMin, setPrecioMin] = useState('');
-    const [precioMax, setPrecioMax] = useState('');
-    
+    const [sliderValue, setSliderValue] = useState([0, 30]);
+
+
     const myTools = async () => {
         request("GET", "/herramientas").then(
             (response) => {
                 console.log(response.data);
                 setTools(response.data);
+                setFilteredTools(response.data);
             }).catch(
                 (error) => {
                     console.log(error);
@@ -25,61 +28,64 @@ function BuscarHerramienta() {
         myTools();
     }, []);
 
-    const handleFilterSubmit = async (e) => {
-        e.preventDefault();
-        const queryParams = {};
-    
-        if (filtro !== '') {
-            queryParams.filtro = filtro;
-        }
-    
-        if ( precioMin !== '' && precioMax !== ''){
-            queryParams.precioMin = precioMin;
-            queryParams.precioMax = precioMax;
-        } else if (precioMax !== '') {
-            queryParams.precioMax = precioMax;
-        } else if (precioMin !== ''){
-            queryParams.precioMin = precioMin;
-        }
-    
-        const queryString = new URLSearchParams(queryParams).toString();
-    
-        request("GET", `/herramientas?${queryString}`).then(
-            (response) => {
-                setTools(response.data);
-            }).catch(
-                (error) => {
-                    console.log(error);
-                }
-            );
+    const handleFiltro = (filtro) => {
+        const filtered = tools.filter(herramienta => {
+            const herramientaTipoLower = herramienta.tipo.toLowerCase();
+            return herramientaTipoLower.includes(filtro.toLowerCase());
+        });
+        setFilteredTools(filtered);
+
+
     }
 
-    const clearFilters = () => {
-        setFiltro('');
-        setPrecioMin('');
-        setPrecioMax('');
-        myTools(); // Llamar a la función para mostrar todas las herramientas sin filtro
+    const handleSlider = (event, newValue) => {
+        console.log(newValue);
+        setSliderValue(newValue);
     }
 
+
+
+    useEffect(() => {
+        const filteredByPrice = tools.filter(herramienta => {
+            return herramienta.precioDiario >= sliderValue[0] && herramienta.precioDiario <= sliderValue[1];
+        });
+        setFilteredTools(filteredByPrice);
+    }
+        , [sliderValue]);
+
+    const borrarFiltros = () => {
+
+        setSliderValue([0, 30]);
+        setFilteredTools(tools);
+
+    }
     return (
         <div>
             <h1>Buscar herramientas</h1>
             <p>Aquí puedes encontrar todas las herramientas disponibles:</p>
 
-            <form onSubmit={handleFilterSubmit}>
-                <label htmlFor="filtro">Buscar:</label>
-                <input type="text" id="filtro" value={filtro} onChange={(e) => setFiltro(e.target.value)} />
-                <label htmlFor="precioMin">Precio Mínimo:</label>
-                <input type="number" id="precioMin" value={precioMin} onChange={(e) => setPrecioMin(e.target.value)} />
-                <label htmlFor="precioMax">Precio Máximo:</label>
-                <input type="number" id="precioMax" value={precioMax} onChange={(e) => setPrecioMax(e.target.value)} />
-                <button type="submit">Aplicar filtro</button>
-                <button onClick={clearFilters}>Limpiar filtros</button>
+            <label htmlFor="filtro">Buscar por tipo:</label>
+            <input type="text" id="filtro" onChange={(e) => handleFiltro(e.target.value)} />
+            <br />
+            <br/>
+            <label htmlFor="precio">Precio Diario:</label>
 
-            </form>
+            <Slider
+                className="slider"
+                getAriaLabel={() => 'Temperature range'}
+                value={sliderValue}
+                onChange={handleSlider}
+                valueLabelDisplay="auto"
+                getAriaValueText={(value) => `${value}°C`}
+            />
+            <button onClick={borrarFiltros}>Borrar filtros</button>
+
+
+
+
 
             <ul>
-                {tools.map(herramienta => (
+                {filteredTools.map(herramienta => (
                     <li key={herramienta.id} >
                         <h3>{herramienta.tipo}</h3>
                         <p>{herramienta.descripcion}</p>

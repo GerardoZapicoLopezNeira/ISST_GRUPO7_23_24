@@ -84,46 +84,6 @@ public class HerramientaService {
         }
         return false;
     }
-    
-    public List<HerramientaDto> getHerramientasByPrecioRange(Double precioMin, Double precioMax) {
-        List<HerramientaDto> herramientas = herramientaRepository.findByPrecioDiarioBetween(precioMin, precioMax)
-                                                               .stream()
-                                                               .map(herramientaMapper::toHerramientaDto)
-                                                               .collect(Collectors.toList());
-        return herramientas;
-    }
-
-    public List<HerramientaDto> getHerramientasByFiltro(String filtro) {
-        List<HerramientaDto> herramientas = herramientaRepository.findByTipoContainingIgnoreCaseOrDescripcionContainingIgnoreCase(filtro, filtro)
-                .stream()
-                .map(herramientaMapper::toHerramientaDto)
-                .collect(Collectors.toList());
-        return herramientas;
-    }
-    
-    public List<HerramientaDto> getHerramientasByFiltroYPrecio(String filtro, Double precioMin, Double precioMax) {
-        List<HerramientaDto> herramientas;
-        if (filtro != null && !filtro.isEmpty() && precioMin != null && precioMax != null) {
-            herramientas = herramientaRepository.findByTipoContainingIgnoreCaseOrDescripcionContainingIgnoreCaseAndPrecioDiarioBetween(
-                filtro, filtro, precioMin, precioMax)
-                .stream()
-                .map(herramientaMapper::toHerramientaDto)
-                .collect(Collectors.toList());
-        } else if (filtro != null && !filtro.isEmpty()) {
-            herramientas = herramientaRepository.findByTipoContainingIgnoreCaseOrDescripcionContainingIgnoreCase(filtro, filtro)
-                .stream()
-                .map(herramientaMapper::toHerramientaDto)
-                .collect(Collectors.toList());
-        } else if (precioMax != null) {
-            herramientas = herramientaRepository.findByPrecioDiarioLessThanEqual(precioMax)
-                .stream()
-                .map(herramientaMapper::toHerramientaDto)
-                .collect(Collectors.toList());
-        } else {
-            herramientas = Collections.emptyList();
-        }
-        return herramientas;
-    }
-    
+  
     
 }

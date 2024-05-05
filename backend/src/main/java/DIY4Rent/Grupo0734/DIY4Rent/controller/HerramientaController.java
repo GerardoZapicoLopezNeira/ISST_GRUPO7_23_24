@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.PutMapping;
 
 
@@ -66,28 +68,6 @@ public class HerramientaController {
         return new ResponseEntity<>(newHerramienta, HttpStatus.CREATED);
     }
 
-    @GetMapping("/api/v1/herramientas")
-    public ResponseEntity<List<HerramientaDto>> getAllHerramientas(
-            @RequestParam(required = false) Double precioMin,
-            @RequestParam(required = false) Double precioMax,
-            @RequestParam(required = false) String filtro) {
-        List<HerramientaDto> herramientaList;
-        if (filtro != null && !filtro.isEmpty() && precioMin != null && precioMax != null) {
-            herramientaList = herramientaService.getHerramientasByFiltroYPrecio(filtro, precioMin, precioMax);
-        } else if (filtro != null && !filtro.isEmpty()) {
-            herramientaList = herramientaService.getHerramientasByFiltro(filtro);
-        } else if (precioMin != null && precioMax != null) {
-            herramientaList = herramientaService.getHerramientasByPrecioRange(precioMin, precioMax);
-        } else {
-            herramientaList = herramientaService.getAllHerramientas();
-        }
-        if (herramientaList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(herramientaList, HttpStatus.OK);
-    }
-
-
    @PutMapping("/api/v1/herramientas/{id}")
     public ResponseEntity<HerramientaDto> updateHerramientaById(@PathVariable Long id, @RequestBody HerramientaDto herramientaDto) {
         HerramientaDto updatedHerramientaData = herramientaService.updateHerramientaById(id, herramientaDto);
@@ -104,5 +84,6 @@ public class HerramientaController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    
+
+
 }
