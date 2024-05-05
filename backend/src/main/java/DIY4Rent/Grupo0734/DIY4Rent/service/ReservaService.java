@@ -61,4 +61,22 @@ public class ReservaService {
             }).collect(Collectors.toList());
             return reservas;
     }
+
+    public void deleteReserva(Long id) {
+        reservaRepository.deleteById(id);
+    }
+
+    public ReservaDto updateReserva(Long id, ReservaDto newReservaData) {
+        Reserva reserva = reservaRepository.findById(id).get();
+        reserva.setImporte(newReservaData.getImporte());
+        reserva.setAñoRecogida(newReservaData.getAñoRecogida());
+        reserva.setMesRecogida(newReservaData.getMesRecogida());
+        reserva.setDiaRecogida(newReservaData.getDiaRecogida());
+        reserva.setAñoDevolucion(newReservaData.getAñoDevolucion());
+        reserva.setMesDevolucion(newReservaData.getMesDevolucion());
+        reserva.setDiaDevolucion(newReservaData.getDiaDevolucion());
+        reserva.setEstado(newReservaData.getEstado());
+        reservaRepository.save(reserva);
+        return reservaMapper.toReservaDto(reserva);
+    }
 }

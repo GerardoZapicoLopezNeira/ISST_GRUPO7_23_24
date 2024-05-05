@@ -18,6 +18,7 @@ import BuscarHerramienta from './pages/BuscarHerramienta';
 import './App.css';
 import { getAuthToken, request, setAuthHeader } from './helpers/axios_helper';
 import MisReservas from './pages/MisReservas';
+import EditarReserva from './pages/EditarReserva';
 
 function App() {
 
@@ -142,6 +143,9 @@ function App() {
               <Route path="/mytools/publish" element={<PublishTool />} />}
             {getAuthToken() !== null &&
               <Route path="/misreservas" element={<MisReservas />} />}
+            {getAuthToken() !== null &&
+              <Route path="/reservas/:id" element={<EditarReserva />} />
+            }
             <Route path="/tool/:id" element={<ToolDetails />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
             <Route path="/mytools/edit/:id" element={<EditTool />} />

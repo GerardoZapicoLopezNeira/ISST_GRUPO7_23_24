@@ -102,6 +102,7 @@ function ToolDetails() {
 
 
   function getDateRange(dateRanges) {
+    
     // Ensure valid input data type
     if (!Array.isArray(dateRanges)) {
       throw new TypeError('Input must be an array of arrays');
