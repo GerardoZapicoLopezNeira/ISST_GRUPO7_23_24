@@ -1,7 +1,6 @@
 package DIY4Rent.Grupo0734.DIY4Rent.controller;
 
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.service.annotation.DeleteExchange;
 
 import DIY4Rent.Grupo0734.DIY4Rent.config.UserAuthenticationProvider;
 import DIY4Rent.Grupo0734.DIY4Rent.dto.CredentialsDto;
@@ -20,12 +19,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.parsing.Location;
 import org.springframework.web.bind.annotation.PutMapping;
 
 
@@ -36,6 +33,7 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+    
     @Autowired
     private UserAuthenticationProvider userAuthenticationProvider;
 

@@ -59,4 +59,7 @@ public class Usuario {
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy="usuario", cascade = CascadeType.ALL)
     private List<Herramienta> herramienta;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="usuario", cascade = CascadeType.ALL)
+    private List<Reserva> reserva;
 }

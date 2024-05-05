@@ -89,6 +89,22 @@ public class HerramientaService {
         }
         return false;
     }
-  
-    
+
+    public void uploadImage(Long id, String imageUrl) {
+        Optional<Herramienta> herramientaOptional = herramientaRepository.findById(id);
+        if (herramientaOptional.isPresent()) {
+            Herramienta herramienta = herramientaOptional.get();
+            herramienta.setFoto(imageUrl);
+            herramientaRepository.save(herramienta);
+        }
+    }
+
+    public String getImageName(Long id) {
+        Optional<Herramienta> herramientaOptional = herramientaRepository.findById(id);
+        if (herramientaOptional.isPresent()) {
+            Herramienta herramienta = herramientaOptional.get();
+            return herramienta.getFoto();
+        }
+        return null;
+    }
 }

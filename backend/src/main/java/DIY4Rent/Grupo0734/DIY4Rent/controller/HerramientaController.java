@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,6 +99,23 @@ public class HerramientaController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(herramientaList, HttpStatus.OK);
+    }
+
+
+    @PostMapping(value = "/api/v1/herramientas/{id}/foto", consumes = "multipart/form-data")
+    public ResponseEntity<HttpStatus> uploadImage(@PathVariable Long id, @RequestParam("file") MultipartFile file) throws IOException {
+        String uploadDirectory = "src/main/resources/static/images";
+        String imagesString = "";
+
+        imagesString = imageService.saveImageToStorage(uploadDirectory, file, id);
+        
+        herramientaService.uploadImage(id, imagesString);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+        
+    }
+    @GetMapping(value = "/api/v1/herramientas/{id}/foto", produces = "image/png")
+    public @ResponseBody byte[] getImages(@PathVariable Long id) throws IOException {
+        return getClass().getResourceAsStream("/static/images/"+herramientaService.getHerramientaById(id).getFoto()).readAllBytes();
     }
 
 }
