@@ -28,7 +28,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
 @RequiredArgsConstructor
 @RestController
 @CrossOrigin("http://localhost:3000")
@@ -53,12 +52,13 @@ public class HerramientaController {
     }
 
     @GetMapping("/api/v1/users/{usuarioId}/herramientas")
-    public ResponseEntity<List<HerramientaDto>> getAllHerramientasByUsuarioId(@PathVariable(value="usuarioId") Long usuarioId) {
-        
-        if(!usuarioRepository.existsById(usuarioId)){
+    public ResponseEntity<List<HerramientaDto>> getAllHerramientasByUsuarioId(
+            @PathVariable(value = "usuarioId") Long usuarioId) {
+
+        if (!usuarioRepository.existsById(usuarioId)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        
+
         List<HerramientaDto> herramientaList = herramientaService.getAllHerramientasByUsuarioId(usuarioId);
         if (herramientaList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -67,15 +67,17 @@ public class HerramientaController {
     }
 
     @PostMapping("/api/v1/users/{usuarioId}/herramientas")
-    public ResponseEntity<HerramientaDto> createHerramienta(@PathVariable(value = "usuarioId") Long usuarioId, @RequestBody HerramientaDto herramientaDto) {
-        
+    public ResponseEntity<HerramientaDto> createHerramienta(@PathVariable(value = "usuarioId") Long usuarioId,
+            @RequestBody HerramientaDto herramientaDto) {
+
         HerramientaDto newHerramienta = herramientaService.createHerramienta(herramientaDto, usuarioId);
 
         return new ResponseEntity<>(newHerramienta, HttpStatus.CREATED);
     }
 
-   @PutMapping("/api/v1/herramientas/{id}")
-    public ResponseEntity<HerramientaDto> updateHerramientaById(@PathVariable Long id, @RequestBody HerramientaDto herramientaDto) {
+    @PutMapping("/api/v1/herramientas/{id}")
+    public ResponseEntity<HerramientaDto> updateHerramientaById(@PathVariable Long id,
+            @RequestBody HerramientaDto herramientaDto) {
         HerramientaDto updatedHerramientaData = herramientaService.updateHerramientaById(id, herramientaDto);
         if (updatedHerramientaData != null) {
             return new ResponseEntity<>(updatedHerramientaData, HttpStatus.OK);
@@ -84,12 +86,20 @@ public class HerramientaController {
     }
 
     @DeleteMapping("/api/v1/herramientas/{id}")
-    public ResponseEntity<HttpStatus> deleteHerramienta(@PathVariable Long id) throws IOException{
+    public ResponseEntity<HttpStatus> deleteHerramienta(@PathVariable Long id) throws IOException {
         if (herramientaService.deleteHerramienta(id)) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/api/v1/herramientas")
+    public ResponseEntity<List<HerramientaDto>> getAllHerramientas() {
+        List<HerramientaDto> herramientaList = herramientaService.getAllHerramientas();
+        if (herramientaList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(herramientaList, HttpStatus.OK);
+    }
 
 }

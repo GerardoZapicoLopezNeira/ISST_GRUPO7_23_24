@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="footer-css">
      <div>
      <h2 className="fot">Grupo07 - DIY4Rent</h2>
-     <div class="footer_links">
+     <div className="footer_links">
                 
                <h3>Conecta con nosotros</h3>
                <a href="https://www.facebook.com" className="icons"><img src="/facebook.png" className='icons'/></a>
