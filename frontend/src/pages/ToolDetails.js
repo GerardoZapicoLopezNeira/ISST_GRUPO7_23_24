@@ -136,7 +136,7 @@ function ToolDetails() {
       </div>
 
 
-      <h1>Detalles de la herramienta</h1>
+      <h2 className='about'>Detalles de la herramienta</h2>
       <p>Disponibilidad: {tool.disponibilidad ? 'Disponible' : 'No disponible'}</p>
       <p>Tipo: {tool.tipo}</p>
       <p>Descripción: {tool.descripcion}</p>
@@ -161,7 +161,7 @@ function ToolDetails() {
                 )
               } />
               <p>Importe de la reserva: {importe} euros</p>
-              <button onClick={hacerReserva}>Reserva</button>
+              <button className="btn btn-primary" onClick={hacerReserva}>Reserva</button>
             </>
           ) : (<p>Para ver la disponibilidad de la herramienta y reservarla autentícate.</p>)}
           <MapsTool lat={tool.usuario.lat} lng={tool.usuario.lng} />

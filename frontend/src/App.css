@@ -301,7 +301,7 @@ font-size: 25px;
 }
 
 .numero {
-font-size: 70px;
+font-size: 50px;
 color: #595b60;
 margin:0;
 }
@@ -317,31 +317,32 @@ margin:0;
 }
 
 .iconsHome{
-  padding-left: 200px;
-  width: 180px;
-  height: 170px;
+  padding-left: 120px;
+  width: 120px;
+  height: 120px;
   
 }
 
 .iconsHomess{
-  padding-left: 750px;
-  width: 180px;
-  height: 170px;
+  padding-left: 900px;
+  width: 150px;
+  height: 150px;
   
 }
 
 .iconsHomes{
-  padding-left: 900px;
-  width: 200px;
-  height: 190px;
+  padding-left: 1350px;
+  width: 150px;
+  height: 150px;
   
 }
 
 
 .difs{
-  background-color: #FCA218;
-  height: 200px;
+  background-color: #F2AE1C;
+  height: 130px;
   padding-bottom: 30px;
+  padding-top: 30px;
 }
 
 .about {
@@ -380,4 +381,23 @@ margin:0;
   justify-content: center;
   padding: 2rem; /* Padding for content area */
 
+}
+
+.slider{
+  color: #F2AE1C;
+  padding: 20px;
+  display: flex;
+}
+
+.buscar{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  font-style: bold;
+}
+
+.iconsHome{
+  padding-right: 100px;
+  width: 120px;
+  height: 120px;
+  
 }

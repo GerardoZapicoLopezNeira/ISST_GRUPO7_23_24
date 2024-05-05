@@ -21,8 +21,8 @@ function User() {
 
   return (
     <div>
-      <h1>Mi cuenta</h1>
-      <p>En esta sección podrás ver tu información personal y modificarla si es necesario.</p>
+      <h2 className='about'>Mi perfil</h2>
+      <p className='buscar'>En esta sección podrás ver tu información personal y modificarla si es necesario.</p>
       <h2>Información personal</h2>
       {userData ? (
         <>
@@ -34,7 +34,7 @@ function User() {
           <Link to={`/user/edit/${userData.id}`}>Editar usuario</Link>
         </>
       ) : (
-        <p>Cargando datos del usuario...</p>
+        <p className='buscar'>Cargando datos del usuario...</p>
       )}
       
       <MapsUser lat={userData.lat} lng={userData.lng}/>

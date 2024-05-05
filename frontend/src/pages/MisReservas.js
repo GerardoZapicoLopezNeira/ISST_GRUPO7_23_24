@@ -35,8 +35,8 @@ function MisReservas() {
 
     return (
         <div>
-            <h1>Mis Reservas</h1>
-            <p>Aquí puedes ver tus reservas</p>
+            <h2 className='about'>Mis reservas</h2>
+            <p className='buscar'>Aquí puedes ver tus reservas</p>
             {reservas.length > 0 ? (
                 reservas.map((reserva) => (
                     <div key={reserva.id}>
@@ -51,7 +51,7 @@ function MisReservas() {
                     </div>
                 ))
             ) : (
-                <p>¡Todavía no tienes reservas!</p>
+                <p className='buscar'>¡Todavía no tienes reservas!</p>
             )
             }
 

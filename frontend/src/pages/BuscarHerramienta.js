@@ -61,14 +61,16 @@ function BuscarHerramienta() {
     }
     return (
         <div>
-            <h1>Buscar herramientas</h1>
+            <h2 className='about'>Buscar herramientas</h2>
+            <div className='buscar'>
             <p>Aquí puedes encontrar todas las herramientas disponibles:</p>
 
             <label htmlFor="filtro">Buscar por tipo:</label>
-            <input type="text" id="filtro" onChange={(e) => handleFiltro(e.target.value)} />
+            <input className='caja' type="text" id="filtro" onChange={(e) => handleFiltro(e.target.value)} />
             <br />
             <br/>
             <label htmlFor="precio">Precio Diario:</label>
+            </div>
 
             <Slider
                 className="slider"
@@ -78,7 +80,7 @@ function BuscarHerramienta() {
                 valueLabelDisplay="auto"
                 getAriaValueText={(value) => `${value}°C`}
             />
-            <button onClick={borrarFiltros}>Borrar filtros</button>
+            <button onClick={borrarFiltros} className="btn btn-primary">Borrar filtros</button>
 
 
 

@@ -32,8 +32,8 @@ function MyTools() {
 
     return (
         <div>
-            <h1>My Tools</h1>
-            <p>Here you can manage your tools</p>
+            <h2 className='about'>Mis herramientas</h2>
+            <p  className='buscar'>Edita tus herramientas</p>
             {tools.length > 0 ? (
                 tools.map((tool) => (
                     <div key={tool.id}>
@@ -45,10 +45,10 @@ function MyTools() {
                     </div>
                 ))
             ) : (
-                <p>¡Todavía no tienes herramientas publicadas!</p>
+                <p className='buscar'>¡Todavía no tienes herramientas publicadas!</p>
             )
             }
-            <Link to="/myTools/publish"><button>Publica aquí tu nueva herramienta</button></Link>
+            <Link to="/myTools/publish"><button  className="btn btn-primary">Publica aquí tu nueva herramienta</button></Link>
 
         </div>
     )

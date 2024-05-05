@@ -60,8 +60,8 @@ function EditTool() {
 
     return (
         <div>
-            <h1>Editar herramienta</h1>
-            <p>Modifica los datos de tu herramienta</p>
+            <h2 className='about'>Editar herramienta</h2>
+            <p className='buscar'>Modifica los datos de tu herramienta</p>
             <form onSubmit={(event) => editTool(event, formData)}>
                     <div className="form-group">
                         <label htmlFor="tipo">Tipo de herramienta</label>
