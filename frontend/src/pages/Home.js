@@ -11,7 +11,7 @@ const Home = () => {
   useEffect (()=> {
     request('GET', '/herramientas')
     .then((response) => {
-      console.log(response.data);
+      ;
       setTools(response.data);
     })
     .catch((error) => {

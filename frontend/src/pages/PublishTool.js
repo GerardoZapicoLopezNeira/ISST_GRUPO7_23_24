@@ -34,7 +34,7 @@ function PublishTool() {
         if (fotoToUpload) {
             try {
                 // Photo upload successful, proceed with tool info submission
-                const infoResponse = await request("POST", "/users/" + localStorage.getItem("userId") + "/herramientas", infoTool);
+                const infoResponse = await request("POST", "/users/" + sessionStorage.getItem("userId") + "/herramientas", infoTool);
                 const fotoResponse = await uploadFile("POST", "/herramientas/" + infoResponse.data.id + "/foto", fotoToUpload);
 
                 console.log(fotoResponse.data);

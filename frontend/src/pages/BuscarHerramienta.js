@@ -14,7 +14,6 @@ function BuscarHerramienta() {
     const myTools = async () => {
         request("GET", "/herramientas").then(
             (response) => {
-                console.log(response.data);
                 setTools(response.data);
                 setFilteredTools(response.data);
             }).catch(

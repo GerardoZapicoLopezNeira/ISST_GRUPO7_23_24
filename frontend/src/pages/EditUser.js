@@ -19,7 +19,7 @@ function EditUser() {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await request('GET', `/users/${localStorage.getItem("username")}`);
+                const response = await request('GET', `/users/${sessionStorage.getItem("username")}`);
                 setUserData(response.data);
             } catch (error) {
                 console.error('Error fetching user data:', error);
@@ -37,9 +37,9 @@ function EditUser() {
     const editUser = async (event) => {
         event.preventDefault();
         try {
-            const response = await request('PUT', `/users/${localStorage.getItem("username")}`, userData);
+            const response = await request('PUT', `/users/${sessionStorage.getItem("username")}`, userData);
             window.location.href = "/user";
-            console.log(response.data);
+            ;
         } catch (error) {
             console.log('Error:', error);
         }
@@ -48,10 +48,10 @@ function EditUser() {
     const deleteUser = async (event) => {
         event.preventDefault();
         try {
-            const response = await request('DELETE', `/users/${localStorage.getItem("username")}`);
+            const response = await request('DELETE', `/users/${sessionStorage.getItem("username")}`);
             setAuthHeader(null);
             window.location.href = "/";
-            console.log(response.data);
+            ;
         } catch (error) {
             console.log('Error:', error);
         }

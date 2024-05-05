@@ -7,9 +7,9 @@ function MisReservas() {
     const [reservas, setReservas] = useState([]);
 
     useEffect(() => {
-        request('GET', '/users/' + localStorage.getItem("userId") + '/reservas').then(
+        request('GET', '/users/' + sessionStorage.getItem("userId") + '/reservas').then(
             (response) => {
-                console.log(response.data);
+                ;
                 setReservas(response.data);
             }
         ).catch(
@@ -23,7 +23,7 @@ function MisReservas() {
     function cancelarReserva (id) {
         request('DELETE', '/reservas/' + id).then(
             (response) => {
-                console.log(response.data);
+                ;
                 setReservas(reservas.filter(reserva => reserva.id !== id));
             }
         ).catch(

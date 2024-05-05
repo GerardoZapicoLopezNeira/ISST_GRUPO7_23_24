@@ -19,7 +19,7 @@ function ToolDetails() {
   useEffect(() => {
     request('GET', `/herramientas/${id}`)
       .then((response) => {
-        console.log(response.data);
+        ;
         setTool(response.data);
       })
       .catch((error) => {
@@ -29,7 +29,7 @@ function ToolDetails() {
       if (getAuthToken() !== null) {
         request('GET', '/herramientas/'+id+'/reservas').then(
           (response) => {
-            console.log(response.data);
+            ;
   
             const dates = [];
   
@@ -51,10 +51,10 @@ function ToolDetails() {
 
   const hacerReserva = () => {
 
-    request('POST', '/reservas/'+ localStorage.getItem("userId") + '/' + tool.id, reserva).then(
+    request('POST', '/reservas/'+ sessionStorage.getItem("userId") + '/' + tool.id, reserva).then(
       (response) => {
 
-        console.log(response.data);
+        ;
         window.location.href = "/misreservas";
       }
     ).catch(
@@ -151,7 +151,7 @@ function ToolDetails() {
           <p>Dirección: {tool.usuario.direccion}</p>
           <p>Email: {tool.usuario.email}</p>
           <p>Teléfono: {tool.usuario.telefono}</p>
-          {localStorage.getItem("userId")==tool.usuario.id ? (<p>¡No puedes reservar tu propia herramienta, bribón!</p>) : getAuthToken() !== null ? (
+          {sessionStorage.getItem("userId")==tool.usuario.id ? (<p>¡No puedes reservar tu propia herramienta, bribón!</p>) : getAuthToken() !== null ? (
             <>
               <Calendar minDate={new Date()} onChange={onChangeDates} value={value} selectRange={true} returnValue={"range"} tileDisabled={({ activeStartDate, date, view }) =>
                 getDateRange(fechasExisteReserva).some(dateRange =>

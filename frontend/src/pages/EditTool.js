@@ -14,7 +14,7 @@ function EditTool() {
     useEffect(() => {
         request('GET', `/herramientas/${id}`)
             .then((response) => {
-                console.log(response.data);
+                ;
                 setFormData(response.data);            
             })
             .catch((error) => {
@@ -40,7 +40,7 @@ function EditTool() {
         try {
             const response = await request('PUT', `/herramientas/${id}`, formData);
             window.location.href = "/mytools";
-            console.log(response.data);
+            ;
         } catch (error) {
             console.log('Error:', error);
         }
@@ -51,7 +51,7 @@ function EditTool() {
         try {
             const response = await request('DELETE', `/herramientas/${id}`);
             window.location.href = "/mytools";
-            console.log(response.data);
+            ;
         } catch (error) {
             console.log('Error:', error);
         }

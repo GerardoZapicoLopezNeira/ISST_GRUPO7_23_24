@@ -9,7 +9,7 @@ function User() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await request('GET', `/users/${localStorage.getItem("username")}`);
+        const response = await request('GET', `/users/${sessionStorage.getItem("username")}`);
         setUserData(response.data);
       } catch (error) {
         console.error('Error fetching user data:', error);

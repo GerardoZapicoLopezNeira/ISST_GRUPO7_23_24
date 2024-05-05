@@ -11,7 +11,7 @@ function MyTools() {
     const myTools = async (id_user) => {
         request("GET", "/users/" + id_user + "/herramientas").then(
             (response) => {
-                console.log(response.data);
+                ;
                 setTools(response.data);
             }).catch(
                 (error) => {
@@ -24,7 +24,7 @@ function MyTools() {
 
 
     useEffect(() => {
-        const id_user = localStorage.getItem("userId");
+        const id_user = sessionStorage.getItem("userId");
         myTools(id_user);
         
     }, []);

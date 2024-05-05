@@ -27,7 +27,7 @@ function App() {
 
   const logout = () => {
     setAuthHeader(null);
-    localStorage.clear();
+    sessionStorage.clear();
     window.location.href = "/";
   };
 
@@ -36,14 +36,12 @@ function App() {
     request("POST", "/login", formData).then(
       (response) => {
         setAuthHeader(response.data.token);
-        localStorage.setItem("userId", response.data.id);
-        localStorage.setItem("username", response.data.username);
+        sessionStorage.setItem("userId", response.data.id);
+        sessionStorage.setItem("username", response.data.username);
         setUserNotFound(null);
         window.location.href = "/";
         if (response.data.token !== null) {
-          console.log("Login correcto");
         } else {
-          console.log("Login incorrecto");
           setAuthHeader(null);
           setUserNotFound("Usuario no encontrado. \n Por favor, inténtelo de nuevo.");
         }
@@ -61,8 +59,8 @@ function App() {
     request('POST', '/register', formData).then(
       (response) => {
         setAuthHeader(response.data.token);
-        localStorage.setItem("userId", response.data.id);
-        localStorage.setItem("username", response.data.username);
+        sessionStorage.setItem("userId", response.data.id);
+        sessionStorage.setItem("username", response.data.username);
         window.location.href = "/";
       }).catch(
         (error) => {

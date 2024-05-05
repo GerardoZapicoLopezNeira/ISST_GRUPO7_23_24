@@ -63,7 +63,7 @@ public class ReservaController {
     public ResponseEntity<List<ReservaDto>> getReservasByUsuarioId(@PathVariable(value="usuarioId") Long usuarioId) {
         if(!reservaRepository.existsById(usuarioId)){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        } 
         List<ReservaDto> reservaList = reservaService.getReservasByUsuarioId(usuarioId);
 
         if(reservaList.isEmpty()){

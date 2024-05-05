@@ -20,7 +20,7 @@ function EditarReserva(props) {
 
         request('GET', '/reservas/' + id).then(
             (response) => {
-                console.log(response.data);
+                ;
                 setReservaAntigua(response.data);
                 console.log(response.data.herramienta)
                 setTool(response.data.herramienta);
@@ -39,7 +39,7 @@ function EditarReserva(props) {
     const getFechasOcupadas= (herramientaId) => {
         request('GET', '/herramientas/' + herramientaId + '/reservas').then(
             (response) => {
-                console.log(response.data);
+                ;
 
                 const dates = [];
 
@@ -78,7 +78,7 @@ function EditarReserva(props) {
     function cancelarReserva(id) {
         request('DELETE', '/reservas/' + id).then(
             (response) => {
-                console.log(response.data);
+                ;
                 window.location.href="/misreservas";
             }
         ).catch(

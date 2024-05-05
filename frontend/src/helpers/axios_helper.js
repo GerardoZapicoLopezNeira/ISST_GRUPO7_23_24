@@ -5,15 +5,15 @@ axios.defaults.baseURL = "http://localhost:9090/api/v1";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 export const getAuthToken = () => {
-    return window.localStorage.getItem("auth_token");
+    return window.sessionStorage.getItem("auth_token");
 };
 
 export const setAuthHeader = (token) => {
     if (token !== null) {
-        window.localStorage.setItem("auth_token", token);
+        window.sessionStorage.setItem("auth_token", token);
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     } else {
-        window.localStorage.removeItem("auth_token");
+        window.sessionStorage.removeItem("auth_token");
         delete axios.defaults.headers.common["Authorization"];
     }
 };

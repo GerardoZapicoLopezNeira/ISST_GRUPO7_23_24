@@ -21,7 +21,7 @@ VALUES
 -- Insertar algunas reservas de ejemplo
 INSERT INTO reserva (usuario_id, herramienta_id, año_recogida, mes_recogida, dia_recogida, año_devolucion, mes_devolucion, dia_devolucion, importe, estado)
 VALUES
-(1, 1, 2024,6,1, 2024,6,3, 30.00, 'Pendiente'),
-(2, 2, 2024,6,2, 2024,6,4, 20.00, 'Pendiente'),
-(3, 3, 2024,6,3, 2024,6,5, 40.00, 'Pendiente'),
-(4, 4, 2024,6,4, 2024,6,6, 16.00, 'Pendiente');
+(1, 3, 2024,6,1, 2024,6,3, 30.00, 'Pendiente'),
+(2, 5, 2024,6,2, 2024,6,4, 20.00, 'Pendiente'),
+(3, 7, 2024,6,3, 2024,6,5, 40.00, 'Pendiente'),
+(4, 1, 2024,6,4, 2024,6,6, 16.00, 'Pendiente');
