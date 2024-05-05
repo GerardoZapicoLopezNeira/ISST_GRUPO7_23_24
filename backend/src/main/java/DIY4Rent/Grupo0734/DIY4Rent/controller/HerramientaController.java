@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.PutMapping;
 
 
@@ -73,15 +74,6 @@ public class HerramientaController {
         return new ResponseEntity<>(newHerramienta, HttpStatus.CREATED);
     }
 
-    @GetMapping("/api/v1/herramientas")
-    public ResponseEntity<List<HerramientaDto>> getAllHerramientas() {
-        List<HerramientaDto> herramientaList = herramientaService.getAllHerramientas();
-        if (herramientaList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(herramientaList, HttpStatus.OK);
-    }
-
    @PutMapping("/api/v1/herramientas/{id}")
     public ResponseEntity<HerramientaDto> updateHerramientaById(@PathVariable Long id, @RequestBody HerramientaDto herramientaDto) {
         HerramientaDto updatedHerramientaData = herramientaService.updateHerramientaById(id, herramientaDto);
@@ -98,42 +90,6 @@ public class HerramientaController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    
 
-    @GetMapping("/api/v1/herramientas/filtrarPorPrecioDiario")
-    public ResponseEntity<List<HerramientaDto>> filtrarPorPrecioDiario(
-            @RequestParam("precioDiario") double precioDiario) {
-        List<HerramientaDto> herramientasFiltradas = herramientaService.filtrarPorPrecioDiario(precioDiario);
-        if (!herramientasFiltradas.isEmpty()) {
-            return new ResponseEntity<>(herramientasFiltradas, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @PostMapping(value = "/api/v1/herramientas/{id}/foto", consumes = "multipart/form-data")
-    public ResponseEntity<HttpStatus> uploadImage(@PathVariable Long id, @RequestParam("file") MultipartFile file) throws IOException {
-        String uploadDirectory = "src/main/resources/static/images";
-        String imagesString = "";
-
-        imagesString = imageService.saveImageToStorage(uploadDirectory, file, id);
-        
-        herramientaService.uploadImage(id, imagesString);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-        
-    }
-    @GetMapping(value = "/api/v1/herramientas/{id}/foto", produces = "image/png")
-    public @ResponseBody byte[] getImages(@PathVariable Long id) throws IOException {
-        // String imageDirectory = "src/main/resources/static/images";
-        // String imageName = herramientaService.getImageName(id);
-        // if (imageName == null) {
-        //     imageName="defaultImage.png";
-        // }
-        // byte[] imageBytes = imageService.getImage(imageDirectory, imageName);
-        // return imageBytes;
-
-
-
-        return getClass().getResourceAsStream("/static/images/"+herramientaService.getHerramientaById(id).getFoto()).readAllBytes();
-    }
 
 }

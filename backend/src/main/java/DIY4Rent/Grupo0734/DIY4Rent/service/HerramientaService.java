@@ -9,6 +9,7 @@ import DIY4Rent.Grupo0734.DIY4Rent.model.Herramienta;
 import DIY4Rent.Grupo0734.DIY4Rent.repo.HerramientaRepository;
 import DIY4Rent.Grupo0734.DIY4Rent.repo.UsuarioRepository;
 
+import java.util.Collections;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -88,26 +89,6 @@ public class HerramientaService {
         }
         return false;
     }
+  
     
-    public List<HerramientaDto> filtrarPorPrecioDiario(double precioDiario) {
-        return herramientaRepository.findByPrecioDiarioLessThan(precioDiario);
-    }
-
-    public void uploadImage(Long id, String imageUrl) {
-        Optional<Herramienta> herramientaOptional = herramientaRepository.findById(id);
-        if (herramientaOptional.isPresent()) {
-            Herramienta herramienta = herramientaOptional.get();
-            herramienta.setFoto(imageUrl);
-            herramientaRepository.save(herramienta);
-        }
-    }
-
-    public String getImageName(Long id) {
-        Optional<Herramienta> herramientaOptional = herramientaRepository.findById(id);
-        if (herramientaOptional.isPresent()) {
-            Herramienta herramienta = herramientaOptional.get();
-            return herramienta.getFoto();
-        }
-        return null;
-    }
 }
