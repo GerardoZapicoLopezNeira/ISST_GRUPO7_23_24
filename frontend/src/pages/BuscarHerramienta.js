@@ -90,6 +90,7 @@ function BuscarHerramienta() {
                     <li key={herramienta.id} >
                         <h3>{herramienta.tipo}</h3>
                         <p>{herramienta.descripcion}</p>
+                        <img className='imagenHerramienta' src={`http://localhost:9090/api/v1/herramientas/${herramienta.id}/foto`} alt={herramienta.tipo} />
                         <p>Precio Diario: {herramienta.precioDiario}</p>
                         <Link to={`/tool/${herramienta.id}`}>Ver detalles</Link>
                     </li>

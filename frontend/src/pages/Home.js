@@ -32,6 +32,7 @@ const Home = () => {
             <h3>{tool.tipo}</h3>
             <p>Precio diario: ${tool.precioDiario}</p>
             <p>Estado Físico: {tool.estadoFisico}</p>
+            <img className='imagenHerramienta' src={`http://localhost:9090/api/v1/herramientas/${tool.id}/foto`} alt={tool.tipo} />
             <p>Propietario: {tool.usuario.nombre}</p>
             <Link to={`/tool/${tool.id}`}>Ver más detalles</Link>
           </li>
