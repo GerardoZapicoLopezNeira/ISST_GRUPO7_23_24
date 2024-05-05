@@ -73,6 +73,15 @@ public class ReservaController {
 
     }
 
+    @GetMapping("/api/v1/reservas/{reservaId}")
+    public ResponseEntity<ReservaDto> getReservaById(@PathVariable(value="reservaId") Long reservaId) {
+        ReservaDto reservaData = reservaService.getReservaById(reservaId);
+        if (reservaData != null) {
+            return new ResponseEntity<>(reservaData, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
 
     @PutMapping("/api/v1/reservas/{reservaId}")
     public ResponseEntity<ReservaDto> updateReserva(@PathVariable(value="reservaId") Long reservaId, @RequestBody ReservaDto reservaDto) {

@@ -10,8 +10,6 @@ function ToolDetails() {
   const [tool, setTool] = useState({});
   const navigate = useNavigate(); // Usa useNavigate para la navegación
 
-  const start = new Date(2024, 4, 13); // Year, Month (0 indexed - May is 4), Day
-  const end = new Date(2024, 4, 15); // Year, Month (0 indexed - July is 6), Day
 
   const [importe, setImporte] = useState(0);
 
@@ -55,6 +53,8 @@ function ToolDetails() {
 
     request('POST', '/reservas/'+ localStorage.getItem("userId") + '/' + tool.id, reserva).then(
       (response) => {
+
+        console.log(response.data);
         window.location.href = "/misreservas";
       }
     ).catch(

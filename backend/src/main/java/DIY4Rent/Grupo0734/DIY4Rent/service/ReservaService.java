@@ -79,4 +79,9 @@ public class ReservaService {
         reservaRepository.save(reserva);
         return reservaMapper.toReservaDto(reserva);
     }
+
+    public ReservaDto getReservaById(Long id) {
+        Reserva reserva = reservaRepository.findById(id).get();
+        return reservaMapper.toReservaDto(reserva);
+    }
 }

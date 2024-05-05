@@ -20,7 +20,7 @@ function MisReservas() {
     }
         , [])
 
-    function cancelarReserva(id){
+    function cancelarReserva (id) {
         request('DELETE', '/reservas/' + id).then(
             (response) => {
                 console.log(response.data);
@@ -46,8 +46,8 @@ function MisReservas() {
                         <p>Fecha de recogida: {reserva.diaRecogida}/{reserva.mesRecogida}/{reserva.añoRecogida}</p>
                         <p>Fecha de devolución: {reserva.diaDevolucion}/{reserva.mesDevolucion}/{reserva.añoDevolucion}</p>
                         <img className="imagenHerramienta" src={"http://localhost:9090/api/v1/herramientas/" + reserva.herramienta.id + "/foto"} alt="foto" />
-                        <button onClick={cancelarReserva(reserva.id)}>Cancelar reserva</button>
-                        <Link to={"/reservas/" + reserva.id}>Editar reserva</Link>
+                        <button onClick={() => cancelarReserva(reserva.id)}>Cancelar reserva</button>
+                        <Link to={`/reservas/${reserva.id}`}>Editar reserva</Link>
                     </div>
                 ))
             ) : (
