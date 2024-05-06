@@ -34,26 +34,29 @@ function MisReservas() {
     }    
 
     return (
-        <div>
-            <h1>Mis Reservas</h1>
-            <p>Aquí puedes ver tus reservas</p>
+        <div className='reservas'>
+            <h2 className='about'>Mis reservas</h2>
+            <p className='buscar'>Aquí puedes ver tus reservas</p>
+            <div className='allMyReservas'>
             {reservas.length > 0 ? (
                 reservas.map((reserva) => (
-                    <div key={reserva.id}>
+                    <div className='myTools' key={reserva.id}>
                         <h3>{reserva.herramienta.tipo}</h3>
                         <p>{reserva.herramienta.descripcion}</p>
-                        <p>{reserva.herramienta.precioDiario}</p>
+                        <p>Precio diario: {reserva.herramienta.precioDiario} euros</p>
                         <p>Fecha de recogida: {reserva.diaRecogida}/{reserva.mesRecogida}/{reserva.añoRecogida}</p>
                         <p>Fecha de devolución: {reserva.diaDevolucion}/{reserva.mesDevolucion}/{reserva.añoDevolucion}</p>
                         <img className="imagenHerramienta" src={"http://localhost:9090/api/v1/herramientas/" + reserva.herramienta.id + "/foto"} alt="foto" />
-                        <button onClick={() => cancelarReserva(reserva.id)}>Cancelar reserva</button>
+                        <button className="cancelar" onClick={() => cancelarReserva(reserva.id)}>Cancelar reserva</button>
                         <Link to={`/reservas/${reserva.id}`}>Editar reserva</Link>
                     </div>
                 ))
             ) : (
-                <p>¡Todavía no tienes reservas!</p>
+                <p className='buscar'>¡Todavía no tienes reservas!</p>
             )
             }
+            </div>
+            
 
 
 

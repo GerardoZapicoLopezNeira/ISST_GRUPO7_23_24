@@ -23,7 +23,7 @@ function MapsTool(props) {
         <p>Ubicación no registrada por el usuario, pongáse en contacto con este para conocer más detalles</p>
         :
         <APIProvider apiKey={credentials.mapsApiKey}>
-            <div style={{ height: "100vh", width: "100%" }}>
+            <div className='mapsUser'>
                 <Map defaultZoom={15} defaultCenter={position} mapId={credentials.mapId}>
                     <AdvancedMarker position={position} onClick={() => setOpen(true)}>
                         <Pin

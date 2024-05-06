@@ -20,7 +20,7 @@ function BuscarHerramienta() {
                 (error) => {
                     console.log(error);
                 }
-            );  
+            );
     }
 
     useEffect(() => {
@@ -56,35 +56,61 @@ function BuscarHerramienta() {
     const borrarFiltros = () => {
 
         setSliderValue([0, 30]);
+        document.getElementById('filtro').value = '';
         setFilteredTools(tools);
 
     }
     return (
-        <div>
-            <h1>Buscar herramientas</h1>
-            <p>Aquí puedes encontrar todas las herramientas disponibles:</p>
+        <div className='buscar'>
+            <h2 className='about'>Buscar herramientas</h2>
+            <h3>Aquí puedes encontrar todas las herramientas disponibles</h3>
+            <div className='filtro'>
+                <label>Buscar por tipo:</label>
+                <input type="text" id="filtro" onChange={(e) => handleFiltro(e.target.value)} />
+            </div>
 
-            <label htmlFor="filtro">Buscar por tipo:</label>
-            <input type="text" id="filtro" onChange={(e) => handleFiltro(e.target.value)} />
             <br />
-            <br/>
-            <label htmlFor="precio">Precio Diario:</label>
+            <br />
+            <div className='filtroPrecio'>
+                <label htmlFor="precio">Filtrar por precio diario:</label>
 
-            <Slider
-                className="slider"
-                getAriaLabel={() => 'Temperature range'}
-                value={sliderValue}
-                onChange={handleSlider}
-                valueLabelDisplay="auto"
-                getAriaValueText={(value) => `${value}°C`}
-            />
-            <button onClick={borrarFiltros}>Borrar filtros</button>
+                <Slider
+                    className="slider"
+                    getAriaLabel={() => 'Temperature range'}
+                    value={sliderValue}
+                    onChange={handleSlider}
+                    valueLabelDisplay="auto"
+                    min={0}
+                    max={100}
+                    step={1}
+                    marks={[
+                        {
+                            value: 0,
+                            label: '0€',
+                        },
+                        {
+                            value: 30,
+                            label: '30€',
+                        },
+                        {
+                            value: 60,
+                            label: '60€',
+                        },
+                        {
+                            value: 100,
+                            label: '100€',
+                        },
+                    ]}fsef
+                />
+            </div>
+
+            <button onClick={borrarFiltros} className="btn btn-primary">Borrar filtros</button>
 
 
 
 
 
-            <ul>
+            <ul className='herramientaBuscar'>
                 {filteredTools.map(herramienta => (
                     <li key={herramienta.id} >
                         <h3>{herramienta.tipo}</h3>

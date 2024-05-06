@@ -63,9 +63,8 @@ function EditUser() {
 
     return (
         <div>
-            <h1>Editar usuario</h1>
-            <p>En esta sección podrás modificar tu información personal.</p>
-            <h2>Información personal</h2>
+            <h2 className='about'>Edita tu perfil</h2>
+            <p className='buscar'> modi tu información personal</p>
             <div className="register-form">
                 <h2>Editar usuario</h2>
                 <form onSubmit={editUser}>

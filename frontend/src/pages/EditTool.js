@@ -59,10 +59,10 @@ function EditTool() {
 
 
     return (
-        <div>
-            <h1>Editar herramienta</h1>
-            <p>Modifica los datos de tu herramienta</p>
-            <form onSubmit={(event) => editTool(event, formData)}>
+        <div className='editarHerramienta'>
+            <h2 className='about'>Editar herramienta</h2>
+            <p className='buscar'>Modifica los datos de tu herramienta</p>
+            <form className='editTool' onSubmit={(event) => editTool(event, formData)}>
                     <div className="form-group">
                         <label htmlFor="tipo">Tipo de herramienta</label>
                         <input
@@ -136,11 +136,12 @@ function EditTool() {
                     <button type="submit" className="btn btn-primary">
                         Publicar
                     </button>
+                    <button type="button" className="eliminar" onClick={(event) => deleteTool(event)}>
+                        Eliminar
+                    </button>
 
                 </form>
-                <button type="button" className="btn btn-danger" onClick={(event) => deleteTool(event)}>
-                        Eliminar
-                </button>
+
         </div>
     );
 }

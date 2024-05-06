@@ -147,7 +147,7 @@ function EditarReserva(props) {
       }
       
     return (
-        <div>
+        <div className='buscar'>
             <h3>{tool.tipo}</h3>
             <p>{tool.descripcion}</p>
             <p>Precio diario: {tool.precioDiario} euros</p>
@@ -168,8 +168,8 @@ function EditarReserva(props) {
                     date.getDate() === dateRange.getDate()
                 )
             } />
-            <button onClick={() => editarReserva(reserva.id)}>Editar reserva</button>
-            <button onClick={() => cancelarReserva(reservaAntigua.id)}>Cancelar reserva</button>
+            <button className="btn btn-primary" onClick={() => editarReserva(reserva.id)} >Editar reserva</button>
+            <button className="btn btn-danger" onClick={() => cancelarReserva(reservaAntigua.id)} >Cancelar reserva</button>
 
 
 

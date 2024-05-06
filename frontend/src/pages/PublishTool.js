@@ -53,11 +53,10 @@ function PublishTool() {
 
     return (
         <div>
-            <h1>Publica tu herramienta</h1>
-            <p>Aquí puedes publicar tu nueva herramienta</p>
-            <p>Recuerda que tienes que rellenar todos los campos</p>
+            <h2 className='about'>Publicar herramienta en DIY4Rent</h2>
+            <p className='buscar'>Recuerda que tienes que rellenar todos los campos</p>
             <div className="register-form">
-                <h2>Publicar una herramienta</h2>
+                <h2>Publicar herramienta</h2>
                 <form onSubmit={(event) => publishTool(event, infoTool)}>
                     <div className="form-group">
                         <label htmlFor="tipo">Tipo de herramienta</label>
@@ -129,7 +128,7 @@ function PublishTool() {
                         />
                     </div>
 
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit"  className="btn btn-primary">
                         Publicar
                     </button>
                 </form>
