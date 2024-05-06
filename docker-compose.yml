@@ -1,0 +1,13 @@
+version: '3.8'  # Specify a compatible Docker Compose version
+
+services:
+  backend:
+    build: ./backend  # Build the backend image from the backend directory
+    ports:
+      - "9090:9090"  # Map backend port 8080 to host port 8080 (adjust as needed)
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"  # Map frontend port 3000 to host port 3000 (adjust as needed)
+    depends_on:
+      - backend  # Ensure frontend starts after backend is ready (if frontend fetches data on startup)

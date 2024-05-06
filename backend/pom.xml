@@ -129,6 +129,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>spring-docker</finalName>
 	</build>
 
 </project>
